@@ -1,0 +1,47 @@
+body {
+	background-color:#2e393d;
+}
+
+.perso_bck {
+	margin-top: 50px;
+	background-color: #e4e4e4;
+}
+.perso_bc2{
+	margin: 0 10px;
+}
+.perso_bc3{
+	margin-top: 30px;
+}
+
+.perso_bc4{
+	margin : 30px 100%;
+	transform: translateX(-100%);
+}
+
+.perso_bc5{
+	margin-bottom: 50px;
+}
+.perso_bc6{
+	margin-bottom: 50px;
+}
+.principe {
+	margin-left: 30%;
+}
+.parallax{
+    background: url("tree.jpg") no-repeat center ;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 500px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.box-bandereau{
+	width: 100%;
+	height: auto;
+}
+.border_body{
+	height: auto;
+}
+.bloc_quizz{
+	margin: 40px 0;
+}
