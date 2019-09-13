@@ -13,7 +13,7 @@
                   </div>
                   <div class="square2 isBordered isGrey2 perso_bc3 perso_bc4 "></div>
                   <div class="square2 isBordered isGrey1 perso_bc3 perso_bc4 "></div>
-                  <div class="square2 isBordered isTurquoise perso_bc3 perso_bc4 "></div>      
+                  <div class="square2 isBordered isTurquoise perso_bc3 perso_bc4 "></div>
               </div>
               <div class="bloc12">
                   <div class="bloc10 isBordered margin-auto perso_bc3 isBCWhite"></div>

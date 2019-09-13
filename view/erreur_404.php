@@ -1,0 +1,6 @@
+<?php ob_start();?>
+<article class='error_404'>
+	<h3>La page n'est pas accessible</h3>
+    <img src="View/404_erreur.png" alt='404_erreur'>
+</article>
+<?php $content=ob_get_clean();?>

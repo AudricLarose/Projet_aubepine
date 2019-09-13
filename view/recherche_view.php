@@ -5,14 +5,15 @@
                   foreach ($abcd_tab as $abcd_tab_find) {
                     if (isset($dataz[$abcd_tab_find])){
                     ?>
-                      <div class='rectangle isBordered isBrown2 margin-gauche-droite'>
+                      <div class='rectangle isBordered isBrown2 margin-gauche-droite opacity-90'>
                         <div class="lilsquare isBordered isBgreen d-flex justify-content-center align-content-center align-item-center "><strong><?php echo $abcd_tab_find ?></strong><br></div>
-                            <div class="bigbloc isBordered d-flex justify-content-center align-item-center align-content-center center">
+                        <div class="bigbloc isBordered  center column">
                         <?php 
                         foreach ($dataz[$abcd_tab_find] as $datat) {
-                                 ?><br>
-                                <a href="index.php?action=montrer_recherche&id_plante=<?php echo $datat['id_plante'];?>" class="linked d-contents"><?php echo $datat['nom'];?></a>
-                                      <br><?php
+                                 ?>
+                                 <div class="bigbloc d-flex justify-content-center align-content-center align-item-center isBordered-b column perso_height-50">
+                                <a href="index.php?action=montrer_recherche&id_plante=<?php echo $datat->getIdPlante();?>" class="linked d-contents"><?php echo $datat->getNom();?></a></div>
+                                     <?php
                         }
                    ?>
                         <br></div>

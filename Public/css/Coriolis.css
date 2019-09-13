@@ -2,6 +2,10 @@ body {
 	background-color:#2e393d;
 }
 
+.height-auto{
+	height: auto;
+}
+
 .perso_bck {
 	margin-top: 50px;
 	background-color: #e4e4e4;
@@ -31,7 +35,7 @@ body {
     background: url("tree.jpg") no-repeat center ;
     background-size: cover;
     background-attachment: fixed;
-    height: 500px;
+    height: 550px;
     width: 100%;
     margin-bottom: 20px;
 }
@@ -44,4 +48,39 @@ body {
 }
 .bloc_quizz{
 	margin: 40px 0;
+}
+.perso_height-50{
+	height: 50px;
+}
+@media only screen and (max-width:580px) {
+	.square{
+		width: 150px;
+		height: 150px;
+		margin-bottom: 30px;
+	}
+	.mobile_adapt_paral{
+		display: block!important;
+	}
+	.mobile_adapt_1{
+		margin-top:30px;
+	}
+
+	.mobile_adapt_bloc_d-none{
+		display: none!important;
+	}
+	.mobile_adapt_bloc_full-margin{
+		width: 100%;
+	}
+	.round2 {
+    	width: 130px;
+    	height: 130px;
+    	border-radius: 50%;
+	}
+	.mobile_adapt_bloc_d-column {
+		flex-flow: column wrap;
+	}
+	.bloc_quizz {
+     	margin: 10px 0; 
+	}
+
 }

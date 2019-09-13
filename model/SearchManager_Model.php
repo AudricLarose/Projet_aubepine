@@ -1,7 +1,10 @@
 <?php
+namespace model;
+
 include_once 'model/connexion.model.php';
-class Affichage extends Connexion {  
-	public function getData (){	
+class SearchManager_Model extends Connexion 
+{
+	public function getData () {
 		$req='SELECT * FROM plantes' ;
 		$resultat=$this->connected()->prepare($req);
 		$resultat->execute();
@@ -9,22 +12,31 @@ class Affichage extends Connexion {
 			while ($x=$resultat->fetch()){
 				$data[]=$x;
 			}
-			return $data;
+			foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            return $datae;
 		} else {
 			echo "pas de resultat";
 		}
 	}
-	public function searchDataByLetter ($letter){	
-		echo "ok";
-		$req="SELECT * FROM plantes WHERE nom LIKE '".$letter."%'";		 
+	public function searchDataByLetter ($letter) {
+		$req="SELECT * FROM plantes WHERE nom LIKE '".$letter."%'";
 		$resultat=$this->connected()->prepare($req);
 		$resultat->execute();
 		if($resultat->rowCount()){
 			while ($x=$resultat->fetch()){
 				$data[]=$x;
 			}
-			return $data;
-		} else {
+			foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            return $datae;		
+        } else {
 			echo "pas de resultat";
 		}
 	}
@@ -37,8 +49,13 @@ class Affichage extends Connexion {
 		    while ($x=$resultat->fetch()){
 			    $data[]=$x;
 		    }
-			return $data;
-		} else {
+			foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            return $datae;	
+           	} else {
 			    echo "pas de resultat";
 		}
 	}
@@ -52,7 +69,12 @@ class Affichage extends Connexion {
 		    while ($x=$resultat->fetch()){
 			    $data[]=$x;
 		    }
-			return $data;
+			foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            return $datae;;
 		} else {
 			    echo "pas de resultat";
 		}
@@ -68,7 +90,12 @@ class Affichage extends Connexion {
 		    	while ($x=$resultat->fetch()){
 			    	$data[]=$x;
 		    	}
-				return $data;
+				foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            return $datae;;
 			
 			} else {
 			    echo "pas de resultat";
@@ -85,12 +112,16 @@ class Affichage extends Connexion {
 		    	while ($x=$resultat->fetch()){
 			    	$data[]=$x;
 		    	}
-				return $data;
-			
+				foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            return $datae;;
 			} else {
 			    echo "pas de resultat";
 			}
-		}	
+		}
 	public function recherche_par_nom (){
 		if (isset($_POST['saisie_recherche_par_nom'])){
 		$mot_clef=$_POST['saisie_recherche_par_nom'];
@@ -102,8 +133,12 @@ class Affichage extends Connexion {
 		    while ($x=$resultat->fetch()){
 			    $data[]=$x;
 		    }
-					return $data;
-
+					foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            return $datae;;
 		} else {
 			    echo "pas de resultat";
 		}
@@ -119,13 +154,17 @@ class Affichage extends Connexion {
 		    while ($x=$resultat->fetch()){
 			    $data[]=$x;
 		    }
-			return $data;
+			foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            return $datae;;
 		} else {
 			    echo "pas de resultat";
 		}
 	}
 }
-
 	public function wordCloud_by ($type) {
 		$req="SELECT DISTINCT ".$type." FROM plantes ORDER BY ".$type;
 		$resultat=$this->connected()->prepare($req);

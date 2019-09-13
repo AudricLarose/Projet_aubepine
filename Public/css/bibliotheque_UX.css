@@ -169,9 +169,13 @@
 .center {
     text-align: center;
 }
-.isBordered{
+.isBordereqd{
     border:1px solid red;
 } 
+
+.isBordered-b{
+    border:1px solid orange;
+}
 
 .justify-content-between{
     justify-content: space-between;
@@ -320,4 +324,31 @@ td{
 
 .d-grid{
   display: grid;
+}
+.opacity-10{
+  opacity: 0.10;
+}
+.opacity-20{
+  opacity: 0.20;
+}
+.opacity-30{
+  opacity: 0.30;
+}
+.opacity-40{
+  opacity: 0.40;
+}
+.opacity-50{
+  opacity: 0.50;
+}
+.opacity-60{
+  opacity: 0.60;
+}
+.opacity-70{
+  opacity: 0.70;
+}
+.opacity-80{
+  opacity: 0.80;
+}
+.opacity-90{
+  opacity: 0.90;
 }
