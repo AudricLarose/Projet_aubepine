@@ -48,9 +48,10 @@ class Users_Manager extends Connexion
                   $passwordcheck=password_verify($password, $ssql['password']);
                  if ($passwordcheck==true) {
                     $data[]=$ssql;
+                    var_dump($data);
                      session_start();
-                     $_SESSION['admin']= 'ok';
-                     $name=$data['user'];
+                     $_SESSION['admin']= $data[0]['user'];
+                     $name=$data[0]['user'];
                      header('location:index.php?action=montrer_quizz&$name='.$name);
                  } else {
                      header('location:index.php?action=montrer_admin&error=wrongpwd');
@@ -63,24 +64,19 @@ class Users_Manager extends Connexion
     }
     public function getScore($user)
     {
-    if (isset($_POST['user'])){
-        $user=$_POST['user'];
-        $req='SELECT score FROM user1 WHERE user='.$user;
+        $req="SELECT score FROM user1 WHERE user='".$user."'";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute();
         if($resultat->rowCount()){
-            while ($x=$resultat->fetch()){
+            if($resultat->rowCount()){
+                while ($x=$resultat->fetch()){
                 $data[]=$x;
+                }
             }
-            foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
-                    $data_hydrated->hydratation($datas);
-                    $datae[]=$data_hydrated;
-            }
-            return $datae;
-        } else {
-            echo "pas de resultat";
+            return $data[0][0];
+            } else {
+                echo "pas de resultat";
         }
     }
 }
-}
+

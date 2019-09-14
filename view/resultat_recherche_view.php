@@ -41,12 +41,13 @@
     <article class=" " id="categorie_nom">
         <h3 class="center ">Nom</h3><br>
         <div class="d-flex isRow justify-content-center">
+             <form method="POST" action ="index.php?action=resultat_recherche">
+                <select name="Nom">
              <?php  foreach ($wordcloud_noms as $wordcloud_nom) { ?>
-            <form method="POST" action ="index.php?action=resultat_recherche">
-                <input type="hidden" name="saisie_recherche_par_nom" value="<?php echo $wordcloud_nom[0];?>">
-                <input type="submit" name="recherche_par_nom" value="<?php echo $wordcloud_nom[0];?>">
-            </form>
+                <option value="<?php echo $wordcloud_nom[0];?>"><?php echo $wordcloud_nom[0];?></option>         
         <?php } ?>
+          </select>
+          <input type="submit" name="saisie_recherche_par_nom" value="valider"></form>
         </div><br>
     </article>
     <article class=" " id="categorie_espece">

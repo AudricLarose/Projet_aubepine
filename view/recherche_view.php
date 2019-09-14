@@ -14,8 +14,8 @@
                                  <div class="bigbloc d-flex justify-content-center align-content-center align-item-center isBordered-b column perso_height-50">
                                 <a href="index.php?action=montrer_recherche&id_plante=<?php echo $datat->getIdPlante();?>" class="linked d-contents"><?php echo $datat->getNom();?></a></div>
                                      <?php
-                        }
-                   ?>
+                                }
+                             ?>
                         <br></div>
                       </div> 
               <?php } 
