@@ -11,9 +11,8 @@
                       <div class="square isBrown2 isBordered height-25 margin-auto perso_bc5">
                           <div class="band isBordered isBgreen d-flex justify-content-center align-item-center align-content-center"><h4>Preparation</h4></div>
                           <div class="center d-flex column justify-content-center align-item-center align-content-center" id='contenu_prepa'>
-                          <h4><?php echo $datas_recherche[0]->getPrepa_1();  ?></h4>
-                          <h4><?php echo $datas_recherche[0]->getPrepa_2();  ?></h4>
-                          <h4><?php echo $datas_recherche[0]->getPrepa_3();  ?></h4>
+                         <?php foreach ($datas_prepa as $data_prepa) {?>
+                              <h4><?php echo $data_prepa->getPrepa();?> </h4><?php } ?></h4>
                           </div>
                       </div>
                   </div>
@@ -28,10 +27,9 @@
                       <div class="square isBrown2 isBordered height-25 margin-auto perso_bc5">
                           <div class="band isBordered isBCWhite d-flex justify-content-center align-item-center align-content-center"><h4>Lutte contre</h4></div>
                            <div class="center d-flex column justify-content-center align-item-center align-content-center" id='contenu_effet'>
-                          <h4><?php echo $datas_recherche[0]->getEffet_1();  ?></h4>
-                          <h4><?php echo $datas_recherche[0]->getEffet_2();  ?></h4>
-                          <h4><?php echo $datas_recherche[0]->getEffet_3();  ?></h4>
-                          <h4><?php echo $datas_recherche[0]->getEffet_4();  ?></h4>
+                          <?php 
+                          foreach ($datas_effet as $data_effet) {?>
+                              <p><?php echo $data_effet->getEffet();?> </p><?php } ?>
                           </div>
                       </div>
                   </div>

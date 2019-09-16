@@ -1,20 +1,43 @@
 <?php
 require 'Public/Outils/Tools.php';
 include 'Public/Outils/autoloader.php';
+include_once 'twig.php';
 
-if (isset($_POST['recherche_par_nom'])) {
+if (isset($_POST['saisie_recherche_par_nom'])) {
 	$action= new \model\SearchManager_Model();
-	$action-> recherche_par_nom();
+	$action->recherche_par_nom();
 }
 if (isset($_POST['inscription'])) {
+	$file=$_FILES['file'];
+	$fileName=$_FILES['file']['name'];
+	$fileTmpName=$_FILES['file']['tmp_name'];
+	$fileSize=$_FILES['file']['size'];
+	$fileError=$_FILES['file']['error'];
+	$fileType=$_FILES['file']['type'];
+	$fileExt=explode('.', $fileName);
+	$fileActualExt= strtolower(end($fileExt));
+	$allowed = array('jpg','jpeg','png');
+	if (in_array($fileActualExt, $allowed)){
+		if ($fileError===0){
+			if ($fileSize<1000000){
+				$fileNameNew=uniqid('',true).".".$fileActualExt;
+				$fileDestination = 'upload/'.$fileNameNew;
+				move_uploaded_file($fileTmpName, $fileDestination);
+			} else {
+				echo "trop grand";
+			}
+		} else {
+			echo "erreur";
+		}
+	} else { echo "erreur: ce n'est pas la bonne extension"; }
 	$action= new \model\Users_Manager;
-	$action-> login();
+	$action-> login($fileActualExt,$fileNameNew);
 }
 if (isset($_POST['connexion'])) {
 	$action= new \model\Users_Manager;
 	$action-> verifie();
 }
-if (isset($_POST['recherche_par_espece'])) {
+if (isset($_POST['saisie_recherche_par_espece'])) {
 	$action= new \model\SearchManager_Model();
 	$action-> recherche_par_espece();
 }
@@ -55,6 +78,7 @@ if (isset($_GET['action'])) {
 			$action->resultat_recherche();
 			break;
 		case 'montrer_quizz':
+		if (isset($_SESSION['admin'])) {
 			if (isset($_POST['score'])) {
                 $score=$_POST['score'];
                 echo 'ok';
@@ -64,18 +88,28 @@ if (isset($_GET['action'])) {
    			$action = new \controller\Quizz_Controller();
 			$action->quizz($score);
 			break;
-		case 'deconnection':
-			$action = new \controller\deconnection_Controller();
-			$action->deco();		
-			break;
-		case 'montrer_login':
-		if (isset($_GET['error'])) {
+		} else {
+			if (isset($_GET['error'])) {
                 $error=$_GET['error'];
             } else {
                 $error = " ";
             }
 			$action = new \controller\Login_Controller();
 			$action->montrerLogin($error);
+			break;
+		}
+		case 'deconnection':
+			$action = new \controller\deconnection_Controller();
+			$action->deco();		
+			break;
+		case 'montrer_classement':
+			if (isset($_GET['page'])) {
+				$page=$_GET['page'];
+			} else {
+				$page=1;
+			}
+			$action = new \controller\Classement_Controller();
+			$action->montrerClassement($page);
 			break;
 		case 'score':
 			if (isset($_POST['score'])) {
@@ -89,7 +123,7 @@ if (isset($_GET['action'])) {
 		default:
             require 'View/erreur_404.php';
             $body= new \tools\Tools();
-            $body->body($content);
+            $body->body($content,$onglet);
             break;
 	}
 } else {

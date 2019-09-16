@@ -117,14 +117,13 @@ class SearchManager_Model extends Connexion
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
-            return $datae;;
+            return $datae;
 			} else {
 			    echo "pas de resultat";
 			}
 		}
 	public function recherche_par_nom (){
-		if (isset($_POST['saisie_recherche_par_nom'])){
-		$mot_clef=$_POST['saisie_recherche_par_nom'];
+		$mot_clef=$_POST['recherche_par_nom'];
 		var_dump($mot_clef);
 		$req="SELECT * FROM plantes WHERE nom LIKE '%".$mot_clef."%'";
 		$resultat=$this->connected()->prepare($req);
@@ -138,15 +137,15 @@ class SearchManager_Model extends Connexion
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
-            return $datae;;
+            return $datae;
 		} else {
 			    echo "pas de resultat";
 		}
-	}
 }
 	public function recherche_par_espece (){
-		if (isset($_POST['saisie_recherche_par_espece'])){
-		$mot_clef=$_POST['saisie_recherche_par_espece'];
+		if (isset($_POST['recherche_par_espece'])){
+		$mot_clef=$_POST['recherche_par_espece'];
+		var_dump($mot_clef);
 		$req="SELECT * FROM plantes WHERE espece LIKE '%".$mot_clef."%'";
 		$resultat=$this->connected()->prepare($req);
 		$resultat->execute();
@@ -159,7 +158,7 @@ class SearchManager_Model extends Connexion
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
-            return $datae;;
+            return $datae;
 		} else {
 			    echo "pas de resultat";
 		}

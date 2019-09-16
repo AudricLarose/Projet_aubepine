@@ -52,6 +52,13 @@ body {
 .perso_height-50{
 	height: 50px;
 }
+.img_profile{
+	background:no-repeat center;
+	   background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    width: 100%;
+}
 @media only screen and (max-width:580px) {
 	.square{
 		width: 150px;
@@ -82,5 +89,8 @@ body {
 	.bloc_quizz {
      	margin: 10px 0; 
 	}
-
+.band_pagination{
+	width: 100%;
+	height: 30px;
+}
 }

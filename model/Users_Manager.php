@@ -4,7 +4,7 @@ namespace model;
 include_once 'Model/connexion.model.php';
 class Users_Manager extends Connexion
 {
-    public function login()
+    public function login($fileNameNew)
     {
         $username=$_POST['nom'];
         $password=$_POST['password'];
@@ -26,10 +26,13 @@ class Users_Manager extends Connexion
              header('location:index.php?montrer_login&error=meme_nom');
             exit();
         } else {
+            if (!isset($fileNameNew)) {
+                $fileNameNew=0;
+            }
             $hashepwd=password_hash($password, PASSWORD_DEFAULT);
-            $req="INSERT INTO user1 (user, mail, password) VALUES (?,?,?)";
+            $req="INSERT INTO user1 (user, mail, password,img,score) VALUES (?,?,?,?,0)";
             $resultat=$this->connected()->prepare($req);
-            $resultat->execute([$username,$mail,$hashepwd]);
+            $resultat->execute([$username,$mail,$hashepwd,$fileNameNew]);
         }
     }
     public function verifie()
@@ -77,6 +80,36 @@ class Users_Manager extends Connexion
             } else {
                 echo "pas de resultat";
         }
+    }
+    public function getClassement($x)
+    {
+        $req="SELECT * FROM user1 ORDER by score DESC LIMIT ".$x.",2";
+        $resultat=$this->connected()->prepare($req);
+        $resultat->execute();
+        if($resultat->rowCount()){
+                $nombre_de_joueurs=$resultat->rowCount();
+                while ($x=$resultat->fetch()){
+                $data[]=$x;
+                }
+            foreach ($data as $datas) {
+                    $data_hydrated= new \model\Entity_User_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=$data_hydrated;
+            }
+            $dataz[]=["nombre_de_joueurs" => $nombre_de_joueurs ];
+            $dataz[]=$datae;
+            return $dataz;
+            } else {
+                echo "pas de resultat";
+        }
+    }
+    public function nombreJoueurs()
+    {
+        $req="SELECT * FROM user1 ORDER by score DESC ";
+        $resultat=$this->connected()->prepare($req);
+        $resultat->execute();
+        $nombre_de_joueurs=$resultat->rowCount();
+        return $nombre_de_joueurs;
     }
 }
 

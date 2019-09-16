@@ -42,9 +42,9 @@
         <h3 class="center ">Nom</h3><br>
         <div class="d-flex isRow justify-content-center">
              <form method="POST" action ="index.php?action=resultat_recherche">
-                <select name="Nom">
+                <select name="recherche_par_nom">
              <?php  foreach ($wordcloud_noms as $wordcloud_nom) { ?>
-                <option value="<?php echo $wordcloud_nom[0];?>"><?php echo $wordcloud_nom[0];?></option>         
+                <option  value="<?php echo $wordcloud_nom[0];?>"><?php echo $wordcloud_nom[0];?></option>         
         <?php } ?>
           </select>
           <input type="submit" name="saisie_recherche_par_nom" value="valider"></form>
@@ -53,32 +53,37 @@
     <article class=" " id="categorie_espece">
         <h3 class="center ">Espece</h3><br>
         <div class="d-flex isRow justify-content-center">
-            <?php  foreach ($wordcloud_especes as $wordcloud_espece) { ?>
               <form method="POST" action ="index.php?action=resultat_recherche">
-                <input type="hidden" name="saisie_recherche_par_espece" value="<?php echo $wordcloud_espece[0];?>">
-                <input type="submit" name="recherche_par_espece" value="<?php echo $wordcloud_espece[0];?>">
-            </form>
+                <select name="recherche_par_espece">
+             <?php  foreach ($wordcloud_especes as $wordcloud_espece) { ?>
+                <option  value="<?php echo $wordcloud_espece[0];?>"><?php echo $wordcloud_espece[0];?></option>         
         <?php } ?>
+          </select>
+          <input type="submit" name="saisie_recherche_par_espece" value="valider"></form>
         </div><br>
     </article>
     <article class=" " id="categorie_prepa">
         <h3 class="center ">Preparation</h3><br>
-        <div class="d-flex isRow justify-content-center"><?php  foreach ($wordcloud_prepas as $wordcloud_prepa) { ?>
+        <div class="d-flex isRow justify-content-center">
               <form method="POST" action ="index.php?action=resultat_recherche">
-                <input type="hidden" name="saisie_recherche_par_prepa" value="<?php echo $wordcloud_prepa[0];?>">
-                <input type="submit" name="recherche_par_prepa" value="<?php echo $wordcloud_prepa[0];?>">
-            </form>
+                <select name="prepa">
+             <?php  foreach ($wordcloud_prepas as $wordcloud_prepa) { ?>
+                <option value="<?php echo $wordcloud_prepa[0];?>"><?php echo $wordcloud_prepa[0];?></option>         
         <?php } ?>
+          </select>
+          <input type="submit" name="saisie_recherche_par_prepa" value="valider"></form>
         </div><br>
     </article>
     <article class=" " id="categorie_effet">
-        <h3 class="center ">Effet</h3><br>
-        <div class="d-flex isRow justify-content-center"><?php  foreach ($wordcloud_effets as $wordcloud_effet) { ?>
+        <h3 class="center ">effet</h3><br>
+        <div class="d-flex isRow justify-content-center">
               <form method="POST" action ="index.php?action=resultat_recherche">
-                <input type="hidden" name="saisie_recherche_par_effet" value="<?php echo $wordcloud_effet[0];?>">
-                <input type="submit" name="recherche_par_effet" value="<?php echo $wordcloud_effet[0];?>">
-            </form>
+                <select name="effet">
+             <?php  foreach ($wordcloud_effets as $wordcloud_effet) { ?>
+                <option name="recherche_par_effet" value="<?php echo $wordcloud_effet[0];?>"><?php echo $wordcloud_effet[0];?></option>         
         <?php } ?>
+          </select>
+          <input type="submit" name="saisie_recherche_par_effet" value="valider"></form>
     </div><br>
     </article>
 </div>
