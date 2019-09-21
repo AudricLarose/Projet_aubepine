@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title><?=$content_onglet_titre;?></title>
+  <title>{% block title %}{% endblock %}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scal=1">
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -33,14 +33,16 @@
             <a href='index.php?action=montrer_quizz' class="square isBordered perso_bc2 isBgreen d-flex justify-content-center isWhite align-content-center align-item-center opacity-90"><i class="fas fa-puzzle-piece fa-5x"></i></a>
             <a href='index.php?action=montrer_documentation' class="square isBordered perso_bc2 isBrown2 d-flex justify-content-center isWhite align-content-center align-item-center linked isWhite opacity-90"><i class="fas fa-book fa-5x"></i></a>
             <a href='index.php?action=resultat_recherche' class="square isBordered perso_bc2 isBrown3 d-flex justify-content-center isWhite align-content-center align-item-center opacity-90"><i class="fab fa-sistrix fa-5x"></i></a>
-             <a href='index.php?action=montrer_classement&page=1' class="round2 isBordered perso_bc2 isBrown d-flex justify-content-center isWhite align-content-center align-item-center opacity-90"><i class="fas fa-key fa-5x"></i></a>
+             <a href='index.php?action=montrer_classement&page=1' class="round2 isBordered perso_bc2 isBrown d-flex justify-content-center isWhite align-content-center align-item-center opacity-90"><i class="fas fa-address-book fa-5x"></i></a>
                 </div>
               </div>
         </div>
         <div class="border_body isBordered">
           {{ moteur_name }}
-          <?=$content_invite_admin;?></div>
-          <?=$content_body;?></div>
+        <?=$content_invite_admin;?></div>
+        {% block content %}
+        {% endblock %}
+</div>
       <script src="Public/js/apps.js"></script>
   </body>
 </html>

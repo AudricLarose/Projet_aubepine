@@ -1,41 +1,46 @@
-<?php ob_start();?>
-<?php  if (isset($resultats)) { ?>
+{% extends 'template_view.html.twig' %}
+{% block title %} 
+Recherche
+{% endblock %}
+{% block content %}
+        {% if resultats is not empty %}
 <div class="tableau d-flex justify-content-center align-item-center align-content-center column">
 <h2 class="center"> Resultat des recherches</h2><br><br>
 <table>
     <tr>
         <th class="center isBordered isBrown">Nom</th>
-        <th class="center isBordered isBgreen">prepa</th>
-        <th class="center isBordered isBrown3">espece</th>
-        <th class="center isBordered isBrown2">effet</th>
-    </tr>
-    <?php
-    foreach ($resultats as $resultat) {
-        ?>
+        <th class="center isBordered isBgreen">Espece</th>
+        <th class="center isBordered isBrown3">Preparation</th>
+        <th class="center isBordered isBrown2">Effet</th>
+    </tr>       
+
+     {% for resultat in resultats %}
        <tr >
         <td class="center isBordered ">
-            <?php echo $resultat->getNom();?>
-        </td>
-        <td class="center  d-flex justify-content-center align-content-center align-item-center ">
-            <?php echo $resultat->getPrepa_1();?><br>
-            <?php echo $resultat->getPrepa_2();?><br>
-            <?php echo $resultat->getPrepa_3();?><br>
+            {{resultat.nom}}
         </td>
         <td class="center isBordered ">
-            <?php echo $resultat->getEspece();?>
+           {{resultat.espece}}  
+        </td>
+        <td class="center  d-flex justify-content-center align-content-center align-item-center ">
+        {% for resultat_prepa in resultats_prepa %}
+            {{resultat_prepa.prepa}}  <br>
+             {% endfor %}
         </td>
         <td class="center d-flex justify-content-center align-content-center align-item-center ">
-            <?php echo $resultat->getEffet_1();?><br>
-            <?php echo $resultat->getEffet_2();?><br>
-            <?php echo $resultat->getEffet_3();?><br>
-            <?php echo $resultat->getEffet_4();?><br>
+             {% for resultat_effet in resultats_effet %}
+           {{resultat_effet.effet}}  <br>
+            {% endfor %}
+
         </td>
-    </tr>
-    <?php }?>
+   </tr>
+ {% endfor %}
+
+ 
 </table>
 </div>
-<?php
-}  ?>
+     {% endif %}
+
 <br><br>
 <div class="" id="wordcloud">
     <article class=" " id="categorie_nom">
@@ -43,9 +48,9 @@
         <div class="d-flex isRow justify-content-center">
              <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="recherche_par_nom">
-             <?php  foreach ($wordcloud_noms as $wordcloud_nom) { ?>
-                <option  value="<?php echo $wordcloud_nom[0];?>"><?php echo $wordcloud_nom[0];?></option>         
-        <?php } ?>
+        {% for wordcloud_nom in wordcloud_noms %}
+                <option  value="{{wordcloud_nom[0]}}">{{wordcloud_nom[0]}}</option>         
+     {% endfor %}
           </select>
           <input type="submit" name="saisie_recherche_par_nom" value="valider"></form>
         </div><br>
@@ -55,9 +60,9 @@
         <div class="d-flex isRow justify-content-center">
               <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="recherche_par_espece">
-             <?php  foreach ($wordcloud_especes as $wordcloud_espece) { ?>
-                <option  value="<?php echo $wordcloud_espece[0];?>"><?php echo $wordcloud_espece[0];?></option>         
-        <?php } ?>
+        {% for wordcloud_espece in wordcloud_especes %}
+                <option  value="{{wordcloud_espece[0]}}">{{wordcloud_espece[0]}}</option>         
+     {% endfor %}
           </select>
           <input type="submit" name="saisie_recherche_par_espece" value="valider"></form>
         </div><br>
@@ -67,9 +72,9 @@
         <div class="d-flex isRow justify-content-center">
               <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="prepa">
-             <?php  foreach ($wordcloud_prepas as $wordcloud_prepa) { ?>
-                <option value="<?php echo $wordcloud_prepa[0];?>"><?php echo $wordcloud_prepa[0];?></option>         
-        <?php } ?>
+        {% for wordcloud_prepa in wordcloud_prepas %}
+                <option value="{{wordcloud_prepa[0]}}">{{wordcloud_prepa[0]}}</option>         
+     {% endfor %}
           </select>
           <input type="submit" name="saisie_recherche_par_prepa" value="valider"></form>
         </div><br>
@@ -79,13 +84,13 @@
         <div class="d-flex isRow justify-content-center">
               <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="effet">
-             <?php  foreach ($wordcloud_effets as $wordcloud_effet) { ?>
-                <option name="recherche_par_effet" value="<?php echo $wordcloud_effet[0];?>"><?php echo $wordcloud_effet[0];?></option>         
-        <?php } ?>
+        {% for wordcloud_effet in wordcloud_effets %}
+                <option name="recherche_par_effet" value="{{wordcloud_effet[0]}}">{{wordcloud_effet[0]}}</option>         
+     {% endfor %}
           </select>
           <input type="submit" name="saisie_recherche_par_effet" value="valider"></form>
     </div><br>
     </article>
 </div>
 <br>
-<?php $content=ob_get_clean();?>
+{% endblock %}

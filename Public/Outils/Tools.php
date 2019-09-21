@@ -6,8 +6,9 @@ class Tools
     public function body($content_body,$content_onglet_titre){
     	$sessions= new \tools\Tools();
         $session=$sessions->sessionactive();
-        if ($session=='ok') {
-            $content_invite_admin='  Bonjour, Monsieur.';
+
+        if (isset($_SESSION['admin'])) {
+            $content_invite_admin='  Bonjour, Monsieur '.ucfirst($_SESSION['admin']);
         } else {
             $content_invite_admin='  Bonjour, invité.';
         }

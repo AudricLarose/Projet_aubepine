@@ -111,5 +111,11 @@ class Users_Manager extends Connexion
         $nombre_de_joueurs=$resultat->rowCount();
         return $nombre_de_joueurs;
     }
-}
 
+    public function insertScore($score){
+        $username=$_SESSION['admin'];
+        $req="UPDATE user1 SET score=".$score." WHERE user='".$username."'";
+        $resultat=$this->connected()->prepare($req);
+        $resultat->execute();
+    }
+}

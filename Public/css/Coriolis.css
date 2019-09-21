@@ -59,6 +59,13 @@ body {
     height: auto;
     width: 100%;
 }
+.img_profile img{
+	background:no-repeat center;
+	   background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    width: 100%;
+}
 @media only screen and (max-width:580px) {
 	.square{
 		width: 150px;

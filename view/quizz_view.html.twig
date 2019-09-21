@@ -1,9 +1,16 @@
-<?php ob_start();?>
+{% extends 'template_view.html.twig' %}
+{% block title %} 
+Quizz
+{% endblock %}
+{% block content %}
 <div class="bigbloc isBordered height-auto">
-  <div class="bloc_score">Votre Score :<span class="score">{{score}}</div></div>
+  <div class="bloc_score">Votre Score :<span class="score">{{ score }}</div></div>
   <a href="index.php?action=deconnection">deconnection</a>
   <div class="bigbloc isBordered d-flex justify-content-center align-item-center align-content-center height-60">
-    <div class="bloc11 isBordered height-40 " id="guess"></div>
+                        <div class="square isBordered height-10 width-10 d-flex justify-content-center align-item-center align-content-center" id='juste'></div>
+
+    <div class="bloc11 isBordered height-40 d-flex justify-content-center align-item-center align-content-center img_profile width-40" id="guess">
+    </div>
   </div>
   <div class="bigbloc isBordered  d-flex justify-content-center align-item-center align-content-center mobile_adapt_bloc_d-column">
     <div class="column full-width d-flex justify-content-center align-content-center">
@@ -16,4 +23,4 @@
   </div>
 </div>
 </div>
-<?php $content=ob_get_clean();?>
+{% endblock %}

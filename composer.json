@@ -1,0 +1,6 @@
+{
+    "name": "audric/coriolis",
+    "require": {
+        "twig/twig": "^2.11"
+    }
+}

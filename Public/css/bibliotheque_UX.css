@@ -178,7 +178,7 @@
 .center {
     text-align: center;
 }
-.isBordered{
+.isBorderede{
     border:1px solid red;
 } 
 
@@ -290,7 +290,7 @@ box-shadow:12px 10px 7px 0px #9a9a9a ;
     width: 300px;
 }
 .width-40{
-    width: 400px;
+    width: 400px!important;
 }
 .width-50{
     width: 500px;

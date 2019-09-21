@@ -3,7 +3,7 @@ namespace controller;
 
 class Documentation_Controller
 {
-    public function documentation()
+    public function documentation($twig)
     {
         try
         {
@@ -14,13 +14,9 @@ class Documentation_Controller
                 $datas=$datas->searchDataByLetter($abcd_tab[$i]);
                 if (isset($datas)) {
                     $dataz[$abcd_tab[$i]]=$datas;
-                } else {
-                   
-                }
             }
-            require 'view/recherche_view.php';
-            $action= new \tools\Tools();
-            $action->body($content,$content_onglet_titre);
+        }
+         echo $twig->render('recherche_view.html.twig',['abcd_tab'=> $abcd_tab, 'dataz'=> $dataz]);
         } catch (\Exception $e) {
                 $content = $e->getMessage();
                 $body= new \tools\Tools();

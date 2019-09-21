@@ -3,7 +3,7 @@ namespace controller;
 
 class Login_Controller
 {
-    public function montrerLogin ($error){
+    public function montrerLogin ($error,$twig){
         $content_onglet_titre="Connexion";
     	switch ($error) {
                         case 'wrongmailandnom':
@@ -25,8 +25,6 @@ class Login_Controller
                             $content_admin= " ";
                             break;
                     }
-    require 'view/Users_view.php';
-     $action= new \tools\Tools();
-    $action->body($content,$content_onglet_titre);
+   echo $twig->render('Users_view.html.twig');
  	}
  }

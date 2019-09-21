@@ -1,4 +1,8 @@
-<?php ob_start();?>
+{% extends 'template_view.html.twig' %}
+{% block title %} 
+Classement
+{% endblock %}
+{% block content %}
 <h2 class="center"> Classements joueurs   </h2> <br>
 <div class="bigbloc d-flex isRow justify-content-around">
     <?php
@@ -28,4 +32,4 @@
         <a href="index.php?action=montrer_classement&page=<?php echo $i ?>" class="lilsquare2 isBrown2 isBordered d-flex justify-content-center align-content-center align-item-center isWhite"><?php echo $i ?></a>
     <?php } ?>
 </div>  
-<?php $content=ob_get_clean();?>
+{% endblock %}

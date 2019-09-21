@@ -1,12 +1,18 @@
 <?php
 require 'Public/Outils/Tools.php';
 include 'Public/Outils/autoloader.php';
-include_once 'twig.php';
+include_once 'vendor/autoload.php';
+$loader = new Twig_Loader_Filesystem('view'); // Dossier contenant les templates
+$twig = new Twig_Environment($loader, array(
+      'cache' => false
+    ));
 
 if (isset($_POST['saisie_recherche_par_nom'])) {
 	$action= new \model\SearchManager_Model();
 	$action->recherche_par_nom();
+	$action->recherche_effet();
 }
+
 if (isset($_POST['inscription'])) {
 	$file=$_FILES['file'];
 	$fileName=$_FILES['file']['name'];
@@ -67,26 +73,25 @@ if (isset($_GET['action'])) {
 	switch ($action) {
 		case 'montrer_recherche':
 			$action = new \controller\Recherche_Plus_Controller();
-			$action->recherche_plus();
+			$action->recherche_plus($twig);
 			break;
 		case 'montrer_documentation':
 			$action = new \controller\Documentation_Controller();
-			$action->documentation();
+			$action->documentation($twig);
 			break;
 		case 'resultat_recherche':
 			$action = new \controller\Resultat_Recherche_Controller();
-			$action->resultat_recherche();
+			$action->resultat_recherche($twig);
 			break;
 		case 'montrer_quizz':
 		if (isset($_SESSION['admin'])) {
 			if (isset($_POST['score'])) {
                 $score=$_POST['score'];
-                echo 'ok';
             } else {
             	$score = " ";
             }
    			$action = new \controller\Quizz_Controller();
-			$action->quizz($score);
+			$action->quizz($score,$twig);
 			break;
 		} else {
 			if (isset($_GET['error'])) {
@@ -95,9 +100,33 @@ if (isset($_GET['action'])) {
                 $error = " ";
             }
 			$action = new \controller\Login_Controller();
-			$action->montrerLogin($error);
+			$action->montrerLogin($error,$twig);
+			break;
+		}	
+		case 'ajax_score':
+		if (isset($_SESSION['admin'])) {
+			if (isset($_POST['score'])) {
+                $score=$_POST['score'];
+            } else {
+            	$score = " ";
+            }
+   			$action = new \controller\Ajax_Score_Controller();
+			$action->ajax_score($score);
 			break;
 		}
+		case 'ajax_plante':
+   			$action = new \controller\Ajax_Score_Controller();
+			$action->ajax_plante();
+			break;
+		case 'ajax_getId':
+		if (isset($_POST['name'])) {
+                $name=$_POST['name'];
+            } else {
+            	$name = " ";
+            }
+   			$action = new \controller\Ajax_Score_Controller();
+			$action->ajax_getId($name);
+			break;
 		case 'deconnection':
 			$action = new \controller\deconnection_Controller();
 			$action->deco();		
@@ -109,7 +138,7 @@ if (isset($_GET['action'])) {
 				$page=1;
 			}
 			$action = new \controller\Classement_Controller();
-			$action->montrerClassement($page);
+			$action->montrerClassement($page,$twig);
 			break;
 		case 'score':
 			if (isset($_POST['score'])) {
@@ -121,6 +150,7 @@ if (isset($_GET['action'])) {
 			$action->quizz_score($score);
 			break;
 		default:
+			$onglet='erreur_404';
             require 'View/erreur_404.php';
             $body= new \tools\Tools();
             $body->body($content,$onglet);

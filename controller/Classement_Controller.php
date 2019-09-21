@@ -3,7 +3,7 @@ namespace controller;
 
 class Classement_Controller
 {
-    public function montrerClassement($page)
+    public function montrerClassement($page,$twig)
     {
         try {
             $content_onglet_titre="Classement joueur";
@@ -11,12 +11,8 @@ class Classement_Controller
             $page=($page-1)*2;
             $classements=$data_classements->getClassement($page);
             $nombre_de_joueurs=$data_classements->nombreJoueurs();
-            $nombre_de_page=(int)($nombre_de_joueurs/2);
-            var_dump($classements);
-            var_dump($nombre_de_page);
-            require 'view/classement_view.php';
-            $action= new \tools\Tools();
-            $action->body($content,$content_onglet_titre);
+            $nombre_de_page=(int)($nombre_de_joueurs/2);            
+            echo $twig->render('classement_view.html.twig',['classements'=> $classements, 'nombre_de_page'=> $nombre_de_page]);
         } catch (\Exception $e) {
             $content = $e->getMessage();
             $body= new \tools\Tools();

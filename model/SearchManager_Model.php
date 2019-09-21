@@ -62,7 +62,7 @@ class SearchManager_Model extends Connexion
 	public function recherche_par_effet (){
 		if (isset($_POST['saisie_recherche_par_effet'])){
 		$mot_clef=$_POST['saisie_recherche_par_effet'];
-		$req="SELECT * FROM plantes WHERE effet_1 LIKE '%".$mot_clef."%' OR effet_2 LIKE '%".$mot_clef."%' OR effet_3 LIKE '%".$mot_clef."%' OR effet_4 LIKE '%".$mot_clef."%'";
+		$req="SELECT * FROM effet WHERE effet LIKE '%".$mot_clef."%'";
 		$resultat=$this->connected()->prepare($req);
 		$resultat->execute();
 		if($resultat->rowCount()){
@@ -70,7 +70,7 @@ class SearchManager_Model extends Connexion
 			    $data[]=$x;
 		    }
 			foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \model\Entity_Effet_Model();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
@@ -83,7 +83,7 @@ class SearchManager_Model extends Connexion
 	public function recherche_par_prepa (){
 		if (isset($_POST['saisie_recherche_par_prepa'])){
 			$mot_clef=$_POST['saisie_recherche_par_prepa'];
-			$req="SELECT * FROM plantes WHERE prepa_1 LIKE '%".$mot_clef."%' OR prepa_2 LIKE '%".$mot_clef."%' OR prepa_3 LIKE '%".$mot_clef."%' OR prepa_4 LIKE '%".$mot_clef."%'";
+			$req="SELECT * FROM prepa WHERE prepa LIKE '%".$mot_clef."%'";
 			$resultat=$this->connected()->prepare($req);
 			$resultat->execute();
 			if($resultat->rowCount()){
@@ -91,7 +91,7 @@ class SearchManager_Model extends Connexion
 			    	$data[]=$x;
 		    	}
 				foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \model\Entity_Prepa_Model();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
@@ -102,34 +102,35 @@ class SearchManager_Model extends Connexion
 			}
 		}
 	}
-	public function recherche_par ($type){
-			$mot_clef=$type;
-			var_dump($mot_clef);
-			$req="SELECT * FROM plantes WHERE prepa_1 LIKE '%".$mot_clef."%' OR prepa_2 LIKE '%".$mot_clef."%' OR prepa_3 LIKE '%".$mot_clef."%' OR prepa_4 LIKE '%".$mot_clef."%' OR effet_1 LIKE '%".$mot_clef."%' OR effet_2 LIKE '%".$mot_clef."%' OR effet_3 LIKE '%".$mot_clef."%' OR effet_4 LIKE '%".$mot_clef."%' OR nom LIKE '%".$mot_clef."%' OR espece LIKE '%".$mot_clef."%'";
-			$resultat=$this->connected()->prepare($req);
-			$resultat->execute();
-			if($resultat->rowCount()){
-		    	while ($x=$resultat->fetch()){
-			    	$data[]=$x;
-		    	}
-				foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
-                    $data_hydrated->hydratation($datas);
-                    $datae[]=$data_hydrated;
-            }
-            return $datae;
-			} else {
-			    echo "pas de resultat";
-			}
-		}
+	// public function recherche_par ($type){
+	// 		$mot_clef=$type;
+	// 		var_dump($mot_clef);
+	// 		$req="SELECT * FROM plantes WHERE prepa_1 LIKE '%".$mot_clef."%' OR prepa_2 LIKE '%".$mot_clef."%' OR prepa_3 LIKE '%".$mot_clef."%' OR prepa_4 LIKE '%".$mot_clef."%' OR effet_1 LIKE '%".$mot_clef."%' OR effet_2 LIKE '%".$mot_clef."%' OR effet_3 LIKE '%".$mot_clef."%' OR effet_4 LIKE '%".$mot_clef."%' OR nom LIKE '%".$mot_clef."%' OR espece LIKE '%".$mot_clef."%'";
+	// 		$resultat=$this->connected()->prepare($req);
+	// 		$resultat->execute();
+	// 		if($resultat->rowCount()){
+	// 	    	while ($x=$resultat->fetch()){
+	// 		    	$data[]=$x;
+	// 	    	}
+	// 			foreach ($data as $datas) {
+ //                    $data_hydrated= new \model\Entity_Search_Model();
+ //                    $data_hydrated->hydratation($datas);
+ //                    $datae[]=$data_hydrated;
+ //            }
+ //            return $datae;
+	// 		} else {
+	// 		    echo "pas de resultat";
+	// 		}
+	// 	}
 	public function recherche_par_nom (){
+		if (isset($_POST['recherche_par_nom'])){
 		$mot_clef=$_POST['recherche_par_nom'];
-		var_dump($mot_clef);
 		$req="SELECT * FROM plantes WHERE nom LIKE '%".$mot_clef."%'";
 		$resultat=$this->connected()->prepare($req);
 		$resultat->execute();
 		if($resultat->rowCount()){
 		    while ($x=$resultat->fetch()){
+
 			    $data[]=$x;
 		    }
 					foreach ($data as $datas) {
@@ -141,11 +142,62 @@ class SearchManager_Model extends Connexion
 		} else {
 			    echo "pas de resultat";
 		}
+	}
+
+}
+public function recherche_effet (){
+		if (isset($_POST['recherche_par_nom'])){
+		$mot_clef=$_POST['recherche_par_nom'];
+		$req="SELECT DISTINCT effet.effet 
+FROM `plantes` 
+LEFT JOIN effet 
+ON plantes.id=effet.id_plante 
+LEFT JOIN prepa 
+ON plantes.id=prepa.id_plante
+WHERE plantes.nom='".$mot_clef."'";
+		$resultat=$this->connected()->prepare($req);
+		$resultat->execute();
+		if($resultat->rowCount()){
+		    while ($x=$resultat->fetch()){
+
+			    $data[]=$x;
+		    }
+			
+            return $data;
+		} else {
+			    echo "pas de resultat";
+		}
+	}
+
+}
+public function recherche_prepa (){
+		if (isset($_POST['recherche_par_nom'])){
+		$mot_clef=$_POST['recherche_par_nom'];
+		$req="SELECT DISTINCT prepa.prepa 
+FROM `plantes` 
+LEFT JOIN effet 
+ON plantes.id=effet.id_plante 
+LEFT JOIN prepa 
+ON plantes.id=prepa.id_plante
+WHERE plantes.nom='".$mot_clef."'";
+		$resultat=$this->connected()->prepare($req);
+		$resultat->execute();
+		if($resultat->rowCount()){
+		    while ($x=$resultat->fetch()){
+
+			    $data[]=$x;
+		    }
+			
+            return $data;
+		} else {
+			    echo "pas de resultat";
+		}
+	}
+
 }
 	public function recherche_par_espece (){
 		if (isset($_POST['recherche_par_espece'])){
 		$mot_clef=$_POST['recherche_par_espece'];
-		var_dump($mot_clef);
 		$req="SELECT * FROM plantes WHERE espece LIKE '%".$mot_clef."%'";
 		$resultat=$this->connected()->prepare($req);
 		$resultat->execute();
@@ -177,5 +229,15 @@ class SearchManager_Model extends Connexion
 			    echo "pas de resultat";
 		}
 	}
-
+	public function GetPlanteId($name){
+        $req="SELECT id FROM plantes WHERE nom='".$name."'";
+        $resultat=$this->connected()->prepare($req);
+		$resultat->execute();
+		if($resultat->rowCount()){
+		    while ($x=$resultat->fetch()){
+			    $data[]=$x;
+		    }
+			return $data;
+    }
+}
 }

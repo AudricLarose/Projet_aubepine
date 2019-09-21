@@ -1,7 +1,10 @@
-<?php ob_start();?>
+{% extends 'template_view.html.twig' %}
+{% block title %} 
+Connexion
+{% endblock %}
+{% block content %}
 <div class="isRedBcg center">
-<?php echo $content_admin ?>
-</div>
+{{content_admin}}</div>
 <br>
 <section class="formulaire_admin">
     <h2>Ouvrir un compte</h2><br><br>
@@ -32,4 +35,4 @@
         <button type='submit' name='connexion'>se connecter</button>
         <br> </form>
 </section>
-<?php $content=ob_get_clean();?>
+{% endblock %}
