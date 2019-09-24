@@ -19,7 +19,7 @@ class Ajax_Score_Controller
 	public function ajax_plante()
 	{
 		$getScore= new \model\SearchManager_Model();
-		$recuperePlante=$getScore->wordCloud_by('nom');
+		$recuperePlante=$getScore->wordCloud_by('nom','plantes');
 		foreach ($recuperePlante as $recuperePlantes) {
 			echo ucfirst($recuperePlantes['nom']);
 			echo "," ;

@@ -11,19 +11,22 @@ class Users_Manager extends Connexion
         $password_repeat=$_POST['password_repeat'];
         $mail=$_POST['mail'];
         if (empty($username) || empty($password) || empty($mail) || empty($password_repeat)) {
-            header('location:index.php?action=montrer_login&error=champs_vide');
+            header('location:index.php?action=montrer_quizz&error=champs_vide');
             exit();
         }else if (!filter_var($mail, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-            header('location:index.php?action=montrer_login&error=wrongmailandnom');
+            header('location:index.php?action=montrer_quizz&error=wrongmailandnom');
             exit(); 
         } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-            header('location:index.php?action=montrer_login&error=wrongmailform');
+            header('location:index.php?action=montrer_quizz&error=wrongmailform');
             exit();
         }elseif ($password!==$password_repeat) {
-            header('location:index.php?action=montrer_login&error=notsame');
+            header('location:index.php?action=montrer_quizz&error=notsame');
+            exit();
+        } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $mail)) {
+             header('location:index.php?action=montrer_quizz&error=meme_mail');
             exit();
         } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-             header('location:index.php?montrer_login&error=meme_nom');
+             header('location:index.php?action=montrer_quizz&error=meme_nom');
             exit();
         } else {
             if (!isset($fileNameNew)) {
@@ -33,14 +36,17 @@ class Users_Manager extends Connexion
             $req="INSERT INTO user1 (user, mail, password,img,score) VALUES (?,?,?,?,0)";
             $resultat=$this->connected()->prepare($req);
             $resultat->execute([$username,$mail,$hashepwd,$fileNameNew]);
+             session_start();
+                     $_SESSION['admin']= $username;
+                     header('location:index.php?action=montrer_quizz&$name='.$username);
         }
     }
     public function verifie()
     {
-        $username=$_POST['nom'];
-        $password=$_POST['password'];
+        $username=$_POST['nom_connexion'];
+        $password=$_POST['password_connexion'];
         if (empty($username) || (empty($password))) {
-            header('location:index.php?action=montrer_login&error=champs_vide');
+            header('location:index.php?action=montrer_quizz&error=champs_vide');
             exit();
         } else {
             $req="SELECT* FROM user1 WHERE user=?;";
@@ -51,17 +57,16 @@ class Users_Manager extends Connexion
                   $passwordcheck=password_verify($password, $ssql['password']);
                  if ($passwordcheck==true) {
                     $data[]=$ssql;
-                    var_dump($data);
                      session_start();
                      $_SESSION['admin']= $data[0]['user'];
                      $name=$data[0]['user'];
                      header('location:index.php?action=montrer_quizz&$name='.$name);
                  } else {
-                     header('location:index.php?action=montrer_admin&error=wrongpwd');
+                     header('location:index.php?action=montrer_quizz&error=wrongpwd');
                     }
                 }
             } else {
-                header('location:index.php?action=montrer_admin&error=wrongpwd');
+                header('location:index.php?action=montrer_quizz&error=wrongpwd');
             }
         }
     }
@@ -81,6 +86,7 @@ class Users_Manager extends Connexion
                 echo "pas de resultat";
         }
     }
+
     public function getClassement($x)
     {
         $req="SELECT * FROM user1 ORDER by score DESC LIMIT ".$x.",2";
@@ -114,8 +120,8 @@ class Users_Manager extends Connexion
 
     public function insertScore($score){
         $username=$_SESSION['admin'];
-        $req="UPDATE user1 SET score=".$score." WHERE user='".$username."'";
+        $req="UPDATE user1 SET score=".$score." WHERE user=?";
         $resultat=$this->connected()->prepare($req);
-        $resultat->execute();
+        $resultat->execute([$username]);
     }
 }

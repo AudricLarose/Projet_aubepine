@@ -18,11 +18,11 @@
               <div class="bloc4 isBordered">
                   <div class="bloc5 isBordered d-flex justify-content-center align-item-center align-content-center mobile_adapt_bloc_d-none "><h2>CORIOLIS</h2></div>
                   <div class="bloc6 isBordered isDarkBlue d-flex justify-content-around mobile_adapt_bloc_full-margin">
-                      <div class="bloc7 isBordered isBWhite d-flex justify-content-center isWhite align-content-center align-item-center">Home</div>
-                      <div class="bloc7 isBordered isBrown2 d-flex justify-content-center isWhite align-content-center align-item-center">Quizz</div>
+                       <a href='index.php' class="bloc7 isBordered isBWhite d-flex justify-content-center isBlack align-content-center align-item-center">Home</a>
+                      <a href='index.php?action=montrer_quizz' class="bloc7 isBordered isBrown2 d-flex justify-content-center isWhite align-content-center align-item-center">Quizz</a>
                       <div class="bloc7 isBordered isDarkBlue mobile_adapt_bloc_d-none"></div>
                       <a href='index.php?action=montrer_documentation' class="bloc7 isBordered isBrown3 d-flex justify-content-center isWhite align-content-center align-item-center">Doc</a>
-                      <div class="bloc7 isBordered isBrown d-flex justify-content-center isWhite align-content-center align-item-center">Search</div>
+                      <a href='index.php?action=montrer_liste&page=1' class="bloc7 isBordered isBrown d-flex justify-content-center isWhite align-content-center align-item-center">Search</a>
                   </div>
               </div>
           </div>
@@ -33,14 +33,12 @@
             <a href='index.php?action=montrer_quizz' class="square isBordered perso_bc2 isBgreen d-flex justify-content-center isWhite align-content-center align-item-center opacity-90"><i class="fas fa-puzzle-piece fa-5x"></i></a>
             <a href='index.php?action=montrer_documentation' class="square isBordered perso_bc2 isBrown2 d-flex justify-content-center isWhite align-content-center align-item-center linked isWhite opacity-90"><i class="fas fa-book fa-5x"></i></a>
             <a href='index.php?action=resultat_recherche' class="square isBordered perso_bc2 isBrown3 d-flex justify-content-center isWhite align-content-center align-item-center opacity-90"><i class="fab fa-sistrix fa-5x"></i></a>
-             <a href='index.php?action=montrer_classement&page=1' class="round2 isBordered perso_bc2 isBrown d-flex justify-content-center isWhite align-content-center align-item-center opacity-90"><i class="fas fa-address-book fa-5x"></i></a>
+             <a href='index.php?action=montrer_liste&page=1' class="round2 isBordered perso_bc2 isBrown d-flex justify-content-center isWhite align-content-center align-item-center opacity-90"><i class="fas fa-address-book fa-5x"></i></a>
                 </div>
               </div>
         </div>
         <div class="border_body isBordered">
-          {{ moteur_name }}
-          <?=$content_invite_admin;?></div>
-       {% block content %}
+          {% block content %}
         {% endblock %}</div>
       <script src="Public/js/apps.js"></script>
   </body>

@@ -9,16 +9,17 @@ class Quizz_Controller
 		if (isset($_SESSION['admin'])) {
 			if ($score!= " "){
 				$getScore= new \model\Users_Manager();
-				var_dump($score);
 				$getScore=$getScore->insertScore($score);
 }
+            $content_invite_admin='Bonjour, Monsieur '.ucfirst($_SESSION['admin']);
+
 			$name=$_SESSION['admin'];
      		$content_nom=$name; //majuscule
 		    $action= new \model\Users_Manager();
 		    $score=$action->getScore($name);
 		    $sessions= new \tools\Tools();
             $session=$sessions->sessionactive();
-  		 echo $twig->render('quizz_view.html.twig',['score'=> $score]);
+  		 echo $twig->render('quizz_view.html.twig',['score'=> $score, 'content_invite_admin'=> $content_invite_admin]);
 		} else {
 			$content='Vous devez vous connectez avant de jouer';
 		}

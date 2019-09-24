@@ -70,9 +70,6 @@ body {
 width: 49%;
     text-align: center;
 }
-.images_plantes{
-	width: 100%;
-}
 @media only screen and (max-width:580px) {
 	.square{
 		width: 140px;
@@ -106,14 +103,5 @@ width: 49%;
 .band_pagination{
 	width: 100%;
 	height: 30px;
-}
-h4{
-	margin-top: 10%;
-}
-.mobile_adapte_margin_bottom_20{
-	margin-bottom: 30px;
-}
-.formulaire_admin, .formulaire_admin1{
-margin: 10px auto;
 }
 }

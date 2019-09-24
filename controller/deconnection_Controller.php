@@ -11,9 +11,8 @@ class Deconnection_controller
         session_destroy();
         header('location:index.php');
     	} catch (\Exception $e) {
-            $content = $e->getMessage();
-            $body= new \outils\Tools();
-            $body->body($content, $content_onglet_titre);
+            echo $twig->render('error_404.html.twig');
+
         }
     }
 }

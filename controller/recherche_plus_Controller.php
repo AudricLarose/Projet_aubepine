@@ -18,12 +18,15 @@ class Recherche_Plus_Controller
             $datas_effet=$datas_effet->showEffect();
             $datas_prepa= new \model\PrepaManager_Model();
             $datas_prepa=$datas_prepa->showPrepa();
-            echo $twig->render('recherche+_view.html.twig',['datas_recherche'=> $datas_recherche, 'datas_effet'=> $datas_effet, 'datas_prepa'=> $datas_prepa]);
+            if (!isset($datas_effet) || !isset($datas_prepa)) {
+                echo $twig->render('erreur_404.html.twig');
+             }  else {
+                echo $twig->render('recherche+_view.html.twig',['datas_recherche'=> $datas_recherche, 'datas_effet'=> $datas_effet, 'datas_prepa'=> $datas_prepa, 'id'=> $id_plante]);
+             }          
+           
 
         } catch (\Exception $e) {
-            $content = $e->getMessage();
-            $body= new \tools\Tools();
-            $body->body($content, $content_onglet_titre);
-        }
+          echo $twig->render('erreur_404.html.twig');
+      }
     }
 }

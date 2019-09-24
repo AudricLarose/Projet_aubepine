@@ -3,33 +3,35 @@
 Recherche
 {% endblock %}
 {% block content %}
-<div class="bloc9 isBordered d-flex " id="bloc_info">
-  <a href="index.php?action=resultat_recherche">retour arriere</a>
-                  <div class="bloc13 isBordered" id='bloc_gauche'>
+<div class="bloc9 isBordered d-flex mobile_adapt_column_n height-auto" id="bloc_info">
+  <a href="index.php?action=resultat_documentation">retour arriere</a>
+                  <div class="bloc13 isBordered mobile_adapt_bloc_full-margin" id='bloc_gauche'>
                       <div class="square isBrown2 isBordered height-25 margin-auto perso_bc5">
                           <div class="band isBordered isBCWhite d-flex justify-content-center align-item-center align-content-center"><h4>Nom</h4></div>
                           <div class="center d-flex column justify-content-center align-item-center align-content-center" id='contenu_nom'>
-                            <h4>{{datas_recherche[0].nom}}</h4>
+                            <p>{{datas_recherche[0].nom}}</p>
                           </div>
                       </div>
                       <div class="square isBrown2 isBordered height-25 margin-auto perso_bc5">
                           <div class="band isBordered isBgreen d-flex justify-content-center align-item-center align-content-center"><h4>Preparation</h4></div>
                           <div class="center d-flex column justify-content-center align-item-center align-content-center" id='contenu_prepa'>
                                     {% for data_prepa in datas_prepa %}
-                              <h4>{{data_prepa.prepa}}</h4>
-                              {% endfor %}</h4>
+                              <p>{{data_prepa.prepa}}</p>
+                              {% endfor %}
                           </div>
                       </div>
                   </div>
-                  <div class="square3 isBordered isBCWhite" id='bloc_image'></div>
-                  <div class="bloc13 isBordered" id='bloc_droite'>
+                  <div class="square3 isBordered isBCWhite margin-auto mobile_adapte_margin_bottom_20" id='bloc_image'>
+<img src="images/{{id}}.jpg" class="images_plantes" alt="images plantes" />
+                  </div>
+                  <div class="bloc13 isBordered mobile_adapt_bloc_full-margin"  id='bloc_droite'>
                       <div class="square isBrown2 isBordered height-25 margin-auto perso_bc5">
                           <div class="band isBordered isBrown d-flex justify-content-center align-item-center align-content-center"><h4>Espece</h4></div>
                           <div class="center d-flex column justify-content-center align-item-center align-content-center" id='contenu_espece'>
-                            <h4>{{datas_recherche[0].espece}}</h4>
+                            <p>{{datas_recherche[0].espece}}</p>
                           </div>
                         </div>
-                      <div class="square isBrown2 isBordered height-25 margin-auto perso_bc5">
+                      <div class="square isBrown2 isBordered   margin-auto perso_bc5 height-auto">
                           <div class="band isBordered isBCWhite d-flex justify-content-center align-item-center align-content-center"><h4>Lutte contre</h4></div>
                            <div class="center d-flex column justify-content-center align-item-center align-content-center" id='contenu_effet'>
                          {% for data_effet in datas_effet %}
@@ -39,5 +41,4 @@ Recherche
                       </div>
                   </div>
               </div>
-          </div>
 {% endblock %}

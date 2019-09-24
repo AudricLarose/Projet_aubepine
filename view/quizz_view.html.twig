@@ -3,12 +3,10 @@
 Quizz
 {% endblock %}
 {% block content %}
-<div class="bigbloc isBordered height-auto">
-  <div class="bloc_score">Votre Score :<span class="score">{{ score }}</div></div>
-  <a href="index.php?action=deconnection">deconnection</a>
+<div class="bigbloc isBordered height-auto">{{content_invite_admin}}
+  <div class="bloc_score">Votre Score :<span class="score">{{ score }}</span></div>
+  <a href="index.php?action=deconnection">deconnexion</a>
   <div class="bigbloc isBordered d-flex justify-content-center align-item-center align-content-center height-60">
-                        <div class="square isBordered height-10 width-10 d-flex justify-content-center align-item-center align-content-center" id='juste'></div>
-
     <div class="bloc11 isBordered height-40 d-flex justify-content-center align-item-center align-content-center img_profile width-40" id="guess">
     </div>
   </div>

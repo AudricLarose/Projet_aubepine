@@ -247,7 +247,7 @@ box-shadow:12px 10px 7px 0px #9a9a9a ;
   margin: 0 40px;
 }
 .height-auto{
-  height: auto!important;
+  height: auto;
 }
 .height-10{
     height: 100px;
@@ -328,13 +328,7 @@ box-shadow:12px 10px 7px 0px #9a9a9a ;
 .canScroll{
     overflow: scroll;   
 }
-.mobile_adapt_column_n{
-      flex-flow: column;
 
-}
-.o-flow{
-  overflow: hidden;
-}
 .linked{
   text-decoration: none;
   color: black;

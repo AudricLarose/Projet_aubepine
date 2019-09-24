@@ -1,17 +1,17 @@
 {% extends 'template_view.html.twig' %}
 {% block title %} 
-Classement
+Liste des membres
 {% endblock %}
 {% block content %}
-<h2 class="center"> Classements joueurs   </h2> <br>
+<h2 class="center"> Liste des membres   </h2> <br>
 <div class="bigbloc d-flex isRow justify-content-around">
             {% for classement in classements[1] %}
       <div class="bloc5 isBordered height-60 d-flex justify-content-center column">
           <div class="square2 isBordered height-40">
       {% if classement.img %}
-               <img class="img_profile" src="./upload/{{classement.img}}">
+               <img class="img_profile" src="./upload/{{classement.img}}" alt="image upload utilisateur">
       {% else %}
-              <img class="img_profile" src="./upload/defaut.jpg">
+              <img class="img_profile" src="./upload/defaut.jpg" alt="image upload par defaut">
       {% endif %}
           </div><br>
           <div class="bloc_info ">
@@ -21,14 +21,13 @@ Classement
           <div class="point">Point :
               {{ classement.score}}
           </div>
-          <div class="classement">Classement :</div>
           </div>
       </div> 
       {% endfor %}
 </div>
 <div class="pagination band_pagination d-flex justify-content-center">
 {% for i in 1..nombre_de_page+1 %}
-        <a href="index.php?action=montrer_classement&page={{i}}" class="lilsquare2 isBrown2 isBordered d-flex justify-content-center align-content-center align-item-center isWhite">{{i}}</a>
+        <a href="index.php?action=montrer_liste&page={{i}}" class="lilsquare2 isBrown2 isBordered d-flex justify-content-center align-content-center align-item-center isWhite">{{i}}</a>
       {% endfor %}
 </div>  
 {% endblock %}

@@ -2,6 +2,7 @@ $(function(){
 
 	let quizz={
 	z :0,
+    temps:null,
 	score:null,
     tabz:null,
     choice:null,
@@ -31,44 +32,19 @@ $(function(){
     appls: function(tableau_du_choix,x){
         $(tableau_du_choix).empty().append(quizz.choix[x]).click(function(){
         quizz.choice=$(tableau_du_choix).html();
-        alert(quizz.choice);
-        alert(quizz.hasard);
         if (quizz.choice==quizz.hasard){
             quizz.score=$('.score').html();
-                        alert(quizz.score);
-
+                        alert('Gagné ! vous avez actuellement: '+quizz.score+' points');
             quizz.score=parseFloat(quizz.score);
-                        alert(quizz.score);
-
             quizz.score=quizz.score+100;
-                        alert(quizz.score);
-
             $.post('index.php?action=ajax_score', {score: quizz.score }, function(data,status){
             $('.score').html(data);
+            console.log(data);
             });
             quizz.hasard=quizz.hasard_sauvage();
             quizz.init();
+    
         }
-    //         var hasard=hasard_sauvage();
-    //         for (var i = 0; i<tableau_des_choix.length; i++) {
-    //         var Bswan=Math.floor(Math.random() * 7);
-    //         [choix[i],choix[Bswan]]=[choix[Bswan],choix[i]];
-    // }   
-    // function verif(){
-    //     for (var i = 0; i <tableau_des_choix.length; i++) {
-    //     if (choix[i]==hasard){ return true };
-    //     if ((choix[i]!=hasard) && (i>=3)){return false;}
-    //     }
-    // }
-    // if (verif()==false){choix[3]=hasard}
-    // for (var i = 0; i<tableau_des_choix.length; i++) {
-    //         var Bswan=Math.floor(Math.random() * 4);
-    //         [choix[i],choix[Bswan]]=[choix[Bswan],choix[i]];
-    // }
-    // for (var i = 0; i<tableau_des_choix.length; i++) {
-    //     appls(tableau_des_choix[i],i);
-    // }
-    //     });
         });
     },
     verif: function (){
@@ -144,7 +120,7 @@ $(function(){
 		ChekMdp(mdp);
         ChekMdpRepeat(mdp_repeat);
         if (ToutEstOk( name,  mail, mdp, mdp_repeat)) {
-           	$('.bouton_envoie').addClass("d-block");
+        $('#bouton_envoie').prop("disabled", false);
      	}
  	});
 	

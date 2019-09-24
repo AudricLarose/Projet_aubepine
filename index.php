@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
 require 'Public/Outils/Tools.php';
 include 'Public/Outils/autoloader.php';
 include_once 'vendor/autoload.php';
@@ -10,10 +13,11 @@ $twig = new Twig_Environment($loader, array(
 if (isset($_POST['saisie_recherche_par_nom'])) {
 	$action= new \model\SearchManager_Model();
 	$action->recherche_par_nom();
-	$action->recherche_effet();
 }
 
 if (isset($_POST['inscription'])) {
+	$fileNameNew=0;
+	if (isset($_FILES['file'])){
 	$file=$_FILES['file'];
 	$fileName=$_FILES['file']['name'];
 	$fileTmpName=$_FILES['file']['tmp_name'];
@@ -23,6 +27,8 @@ if (isset($_POST['inscription'])) {
 	$fileExt=explode('.', $fileName);
 	$fileActualExt= strtolower(end($fileExt));
 	$allowed = array('jpg','jpeg','png');
+	var_dump($file);
+	if (!empty($fileName)){
 	if (in_array($fileActualExt, $allowed)){
 		if ($fileError===0){
 			if ($fileSize<1000000){
@@ -35,9 +41,14 @@ if (isset($_POST['inscription'])) {
 		} else {
 			echo "erreur";
 		}
-	} else { echo "erreur: ce n'est pas la bonne extension"; }
+	} else  { echo "erreur: ce n'est pas la bonne extension"; }
+} else {
+		$fileNameNew=0;
+
+}
+}
 	$action= new \model\Users_Manager;
-	$action-> login($fileActualExt,$fileNameNew);
+	$action-> login($fileNameNew);
 }
 if (isset($_POST['connexion'])) {
 	$action= new \model\Users_Manager;
@@ -61,6 +72,8 @@ if (isset($_POST['recherche_par'])) {
 }
 
 session_start();
+ 	$sessions= new \tools\Tools();
+        $session=$sessions->sessionactive();
 if (isset($_GET['id_plante'])) {
 	$id_plante=$_GET['id_plante'];
 }
@@ -131,7 +144,7 @@ if (isset($_GET['action'])) {
 			$action = new \controller\deconnection_Controller();
 			$action->deco();		
 			break;
-		case 'montrer_classement':
+		case 'montrer_liste':
 			if (isset($_GET['page'])) {
 				$page=$_GET['page'];
 			} else {
@@ -150,13 +163,11 @@ if (isset($_GET['action'])) {
 			$action->quizz_score($score);
 			break;
 		default:
-			$onglet='erreur_404';
-            require 'View/erreur_404.php';
-            $body= new \tools\Tools();
-            $body->body($content,$onglet);
+            echo $twig->render('erreur_404.html.twig');
+
             break;
 	}
 } else {
 	$action = new \controller\Inital_Controller();
-	$action->initial();
+	$action->initial($twig);
 }

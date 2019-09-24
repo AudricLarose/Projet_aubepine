@@ -3,40 +3,33 @@
 Recherche
 {% endblock %}
 {% block content %}
-        {% if resultats is not empty %}
+                  {% if resultats is not empty %}
 <div class="tableau d-flex justify-content-center align-item-center align-content-center column">
 <h2 class="center"> Resultat des recherches</h2><br><br>
 <table>
     <tr>
         <th class="center isBordered isBrown">Nom</th>
-        <th class="center isBordered isBgreen">Espece</th>
-        <th class="center isBordered isBrown3">Preparation</th>
+        <th class="center isBordered isBgreen">Prepa</th>
+        <th class="center isBordered isBrown3">Espece</th>
         <th class="center isBordered isBrown2">Effet</th>
-    </tr>       
+    </tr>
+        {% for resultat in resultats %}
 
-     {% for resultat in resultats %}
        <tr >
         <td class="center isBordered ">
-            {{resultat.nom}}
+            {% filter title %}{{resultat.nom}}{% endfilter %}       </td>
+        <td class="center  d-flex justify-content-center align-content-center align-item-center ">
+            {% filter title %}{{resultat.prepa}}{% endfilter %}  <br>
         </td>
         <td class="center isBordered ">
-           {{resultat.espece}}  
-        </td>
-        <td class="center  d-flex justify-content-center align-content-center align-item-center ">
-        {% for resultat_prepa in resultats_prepa %}
-            {{resultat_prepa.prepa}}  <br>
-             {% endfor %}
+           {% filter title %}{{resultat.espece}}{% endfilter %}  
         </td>
         <td class="center d-flex justify-content-center align-content-center align-item-center ">
-             {% for resultat_effet in resultats_effet %}
-           {{resultat_effet.effet}}  <br>
-            {% endfor %}
+           {% filter title %}{{resultat.effet}}{% endfilter %}  <br>
 
         </td>
-   </tr>
- {% endfor %}
-
- 
+    </tr>
+     {% endfor %}
 </table>
 </div>
      {% endif %}
@@ -49,7 +42,7 @@ Recherche
              <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="recherche_par_nom">
         {% for wordcloud_nom in wordcloud_noms %}
-                <option  value="{{wordcloud_nom[0]}}">{{wordcloud_nom[0]}}</option>         
+                <option  value="{{wordcloud_nom[0]}}">{% filter title %}{{wordcloud_nom[0]}}{% endfilter %}</option>         
      {% endfor %}
           </select>
           <input type="submit" name="saisie_recherche_par_nom" value="valider"></form>
@@ -61,7 +54,7 @@ Recherche
               <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="recherche_par_espece">
         {% for wordcloud_espece in wordcloud_especes %}
-                <option  value="{{wordcloud_espece[0]}}">{{wordcloud_espece[0]}}</option>         
+                <option  value="{{wordcloud_espece[0]}}">{% filter title %}{{wordcloud_espece[0]}}{% endfilter %}</option>         
      {% endfor %}
           </select>
           <input type="submit" name="saisie_recherche_par_espece" value="valider"></form>
@@ -73,7 +66,7 @@ Recherche
               <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="prepa">
         {% for wordcloud_prepa in wordcloud_prepas %}
-                <option value="{{wordcloud_prepa[0]}}">{{wordcloud_prepa[0]}}</option>         
+                <option value="{{wordcloud_prepa[0]}}">{% filter title %}{{wordcloud_prepa[0]}}{% endfilter %}</option>         
      {% endfor %}
           </select>
           <input type="submit" name="saisie_recherche_par_prepa" value="valider"></form>
@@ -85,7 +78,7 @@ Recherche
               <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="effet">
         {% for wordcloud_effet in wordcloud_effets %}
-                <option name="recherche_par_effet" value="{{wordcloud_effet[0]}}">{{wordcloud_effet[0]}}</option>         
+                <option name="recherche_par_effet" value="{{wordcloud_effet[0]}}">{% filter title %}{{wordcloud_effet[0]}}{% endfilter %}</option>         
      {% endfor %}
           </select>
           <input type="submit" name="saisie_recherche_par_effet" value="valider"></form>

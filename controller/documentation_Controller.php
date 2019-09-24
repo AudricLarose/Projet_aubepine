@@ -18,9 +18,8 @@ class Documentation_Controller
         }
          echo $twig->render('recherche_view.html.twig',['abcd_tab'=> $abcd_tab, 'dataz'=> $dataz]);
         } catch (\Exception $e) {
-                $content = $e->getMessage();
-                $body= new \tools\Tools();
-                $body->body($content, $content_onglet_titre);
+                 echo $twig->render('erreur_404.html.twig');
+
         }
     }
 }
