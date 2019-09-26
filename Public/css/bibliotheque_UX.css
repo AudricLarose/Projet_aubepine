@@ -29,6 +29,9 @@
     width: 30%;
     height: 80px;
 }
+.cursor{
+  cursor: pointer;
+}
 .bloc6 {
    width: 70%;
    height: 80px;
@@ -180,12 +183,17 @@
 .center {
     text-align: center;
 }
-.isBorderede{
-    border:1px solid red;
+.isBordered{
+    border:1px solid black;
 } 
 
 .isBordered-b{
     border:1px solid orange;
+}
+.isBordered-side{
+border-right: solid black;
+border-left: solid black;
+
 }
 
 .justify-content-between{
@@ -328,16 +336,12 @@ box-shadow:12px 10px 7px 0px #9a9a9a ;
 .canScroll{
     overflow: scroll;   
 }
-.mobile_adapt_column_n{
-      flex-flow: column;
 
-}
 .o-flow{
   overflow: hidden;
 }
 .linked{
   text-decoration: none;
-  color: black;
 }
 
 th{

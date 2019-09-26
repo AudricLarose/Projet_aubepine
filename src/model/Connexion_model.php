@@ -1,7 +1,7 @@
 <?php
-namespace model;
+namespace Coriolis\model;
 
-class Connexion {
+class Connexion_model {
 	private $serveur='localhost';
 	private $name='root';
 	private $passwword='';

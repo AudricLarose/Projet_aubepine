@@ -1,7 +1,6 @@
 <?php
-namespace controller;
+namespace Coriolis\controller;
 
-include 'Public/Outils/autoloader_model.php';
 class Inital_Controller
 {
     public function initial ($twig) 

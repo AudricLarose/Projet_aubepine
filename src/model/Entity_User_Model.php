@@ -1,5 +1,5 @@
 <?php
-namespace model ;
+namespace Coriolis\model ;
 
 class Entity_User_Model 
 {

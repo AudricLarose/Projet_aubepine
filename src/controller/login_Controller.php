@@ -1,5 +1,5 @@
 <?php
-namespace controller;
+namespace Coriolis\controller;
 
 class Login_Controller
 {
@@ -19,13 +19,16 @@ class Login_Controller
                             $content_admin= "Ce nom est deja pris !";
                             break;
                         case 'meme_mail':
-                            $content_admin= "Ce mail est deja mis !";
+                            $content_admin= "Ce mail est deja dans notre base de donnée, tentez de vous connecter !";
                             break;
                         case 'wrongmailform':
                             $content_admin= "Veuillez inscrire un mail valide !";
                             break;
                         case 'wrongpwd':
                             $content_admin= "La saise du mot de passe ou d'utilisateur est mauvaise !";
+                            break;
+                        case 'caractere':
+                            $content_admin= "Attention, les caractères spéciaux ne sont pas admis !";
                             break;
                         case ' ':
                             $content_admin= " ";

@@ -1,5 +1,5 @@
 <?php
-namespace controller;
+namespace Coriolis\controller;
 
 class Deconnection_controller
 {

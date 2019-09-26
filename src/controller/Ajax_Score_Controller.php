@@ -1,5 +1,5 @@
 <?php
-namespace controller;
+namespace Coriolis\controller;
 
 class Ajax_Score_Controller
 {
@@ -8,7 +8,7 @@ class Ajax_Score_Controller
 		$content_onglet_titre="Quizz";
 		if (isset($_SESSION['admin'])) {
 			if ($score!= " "){
-				$getScore= new \model\Users_Manager();
+				$getScore= new \Coriolis\model\Users_Manager();
 				$insertScore=$getScore->insertScore($score);
 				$getTheScore=$getScore->getScore($_SESSION['admin']);
 				echo $getTheScore;
@@ -18,7 +18,7 @@ class Ajax_Score_Controller
 
 	public function ajax_plante()
 	{
-		$getScore= new \model\SearchManager_Model();
+		$getScore= new \Coriolis\model\SearchManager_Model();
 		$recuperePlante=$getScore->wordCloud_by('nom','plantes');
 		foreach ($recuperePlante as $recuperePlantes) {
 			echo ucfirst($recuperePlantes['nom']);
@@ -27,7 +27,7 @@ class Ajax_Score_Controller
 	}
 	public function ajax_getId($plante)
 	{
-		$getId= new \model\SearchManager_Model();
+		$getId= new \Coriolis\model\SearchManager_Model();
 		$recupereId=$getId->GetPlanteId($plante);
 		echo $recupereId[0][0];
 	}

@@ -1,8 +1,7 @@
 <?php
-namespace model;
+namespace Coriolis\model;
 
-include_once 'Model/connexion.model.php';
-class Users_Manager extends Connexion
+class Users_Manager extends Connexion_model
 {
     public function login($fileNameNew)
     {
@@ -22,31 +21,53 @@ class Users_Manager extends Connexion
         }elseif ($password!==$password_repeat) {
             header('location:index.php?action=montrer_quizz&error=notsame');
             exit();
-        } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $mail)) {
-             header('location:index.php?action=montrer_quizz&error=meme_mail');
-            exit();
         } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-             header('location:index.php?action=montrer_quizz&error=meme_nom');
+             header('location:index.php?action=montrer_quizz&error=caractere');
             exit();
         } else {
+            $sql ="SELECT * FROM user1 WHERE user=?";
+            $result=$this->connected()->prepare($sql);
+            $result->execute([$username]);
+            $results=$result->rowCount();
+            if ($results>0) {
+               header('location:index.php?action=montrer_quizz&error=meme_nom');
+            exit();
+            } else  {
+            $sql ="SELECT * FROM user1 WHERE mail=?";
+            $result=$this->connected()->prepare($sql);
+            $result->execute([$mail]);
+            $results=$result->rowCount();
+            if ($results>0) {
+               header('location:index.php?action=montrer_quizz&error=meme_mail');
+            exit();
+
+            } else {
             if (!isset($fileNameNew)) {
                 $fileNameNew=0;
             }
+
             $hashepwd=password_hash($password, PASSWORD_DEFAULT);
             $req="INSERT INTO user1 (user, mail, password,img,score) VALUES (?,?,?,?,0)";
             $resultat=$this->connected()->prepare($req);
             $resultat->execute([$username,$mail,$hashepwd,$fileNameNew]);
-             session_start();
-                     $_SESSION['admin']= $username;
-                     header('location:index.php?action=montrer_quizz&$name='.$username);
+            session_start();
+            $_SESSION['admin']= $username;
+            header('location:index.php?action=montrer_quizz&$name='.$username);
+
         }
     }
+}
+}
+
     public function verifie()
     {
         $username=$_POST['nom_connexion'];
         $password=$_POST['password_connexion'];
         if (empty($username) || (empty($password))) {
             header('location:index.php?action=montrer_quizz&error=champs_vide');
+            exit();
+        } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+             header('location:index.php?action=montrer_quizz&error=caractere');
             exit();
         } else {
             $req="SELECT* FROM user1 WHERE user=?;";
@@ -65,8 +86,6 @@ class Users_Manager extends Connexion
                      header('location:index.php?action=montrer_quizz&error=wrongpwd');
                     }
                 }
-            } else {
-                header('location:index.php?action=montrer_quizz&error=wrongpwd');
             }
         }
     }
@@ -98,7 +117,7 @@ class Users_Manager extends Connexion
                 $data[]=$x;
                 }
             foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_User_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_User_Model();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }

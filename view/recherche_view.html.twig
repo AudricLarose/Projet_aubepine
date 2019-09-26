@@ -9,10 +9,10 @@ Abcedaire
                   {% if dataz[abcd_tab_find] is not empty %}
                       <div class='rectangle isBordered isBrown2 margin-gauche-droite opacity-90'>
                         <div class="lilsquare isBordered isBgreen d-flex justify-content-center align-content-center align-item-center "><strong>{% filter title %}{{ abcd_tab_find}}{% endfilter %}</strong><br></div>
-                        <div class="bigbloc isBordered  center column">
+                        <div class="bigbloc   center column">
                           {% for datat in dataz[abcd_tab_find] %}
                                  <div class="bigbloc d-flex justify-content-center align-content-center align-item-center isBordered-b column perso_height-50">
-                                <a href="index.php?action=montrer_recherche&id_plante={{datat.id}}" class="linked d-contents">{% filter title %}{{datat.nom}}{% endfilter %}</a></div>
+                                <a href="index.php?action=montrer_recherche&id_plante={{datat.id}}" class="isBlack d-contents">{% filter title %}{{datat.nom}}{% endfilter %}</a></div>
                             {% endfor %}
                         <br></div>
                     </div>

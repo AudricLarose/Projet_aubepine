@@ -1,5 +1,5 @@
 <?php
-namespace controller;
+namespace Coriolis\controller;
 
 class Classement_Controller
 {
@@ -7,15 +7,20 @@ class Classement_Controller
     {
         try {
             $content_onglet_titre="Listes des membres";
-            $data_classements= new \model\Users_Manager();
-            $page=($page-1)*2;
+            $data_classements= new \Coriolis\model\Users_Manager();
+            if (is_numeric($page)) {  $page=($page-1)*2;}
             $id=$_GET['page'];
             $classements=$data_classements->getClassement($page);
             $nombre_de_joueurs=$data_classements->nombreJoueurs();
+            if ($classements==null) {
+                echo $twig->render('erreur_404.html.twig');
+
+            }   else {         
             $nombre_de_page=(int)($nombre_de_joueurs/2);
             echo $twig->render('classement_view.html.twig',['classements'=> $classements, 'nombre_de_page'=> $nombre_de_page, 'id'=> $id]);
+        }
         } catch (\Exception $e) {
-            echo $twig->render('error_404.html.twig');
+            echo $twig->render('erreur_404.html.twig');
         }
     }
 }

@@ -1,5 +1,3 @@
-$(function(){
-
 	let quizz={
 	z :0,
     temps:null,
@@ -70,58 +68,3 @@ $(function(){
         }
     }
 }
- quizz.données();  
-
-	function EsCeValide(y) {
-        return y.length >= 2;
-    }
-    function ChekName(a) {                     
-        if (! EsCeValide(a)) {
-            $('.nom-retro').text('Nombre de lettre insuffisant');
-        } else {
-            $('.nom-retro').empty();
-        }
-    }
-    function ChekMail(a) {                          //verifie longueur prenom
-        if (! EsCeValide(a)) {
-            $('.mail-retro').text('Nombre de lettre insuffisant');
-        } else {
-            $('.mail-retro').empty();
-        }
-    }
-       function ChekMdp(a) {                          //verifie longueur prenom
-        if (! EsCeValide(a)) {
-            $('.mdp-retro').text('Nombre de lettre insuffisant');
-        } else {
-            $('.mdp-retro').empty();
-        }
-    }
-       function ChekMdpRepeat(a) {                          //verifie longueur prenom
-        	if (! EsCeValide(a)) {
-            	$('.mdp-repeat-retro').text('Nombre de lettre insuffisant');
-        	} else {
-            	$('.mdp-repeat-retro').empty();
-        	}
-    	}
-        function ToutEstOk(a, b, c,d) {                          //verifie nom+prenom+nbr velo  
-        if ((EsCeValide(a)) && (EsCeValide(b)) && (EsCeValide(c)) && (EsCeValide(d))) {
-            return true;
-        }
-    }
-
-
-    $("input").keyup(function(){
-     	var name = $('#nom_user').val();
-        var mail = $('#mail_user').val();
-        var mdp = $('#mdp_user').val();
-        var mdp_repeat = $('#mdp-repeat_user').val();
-        ChekName(name);
-        ChekMail(mail);
-		ChekMdp(mdp);
-        ChekMdpRepeat(mdp_repeat);
-        if (ToutEstOk( name,  mail, mdp, mdp_repeat)) {
-        $('#bouton_envoie').prop("disabled", false);
-     	}
- 	});
-	
- })

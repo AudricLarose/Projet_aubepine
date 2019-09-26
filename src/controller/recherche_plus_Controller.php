@@ -1,5 +1,5 @@
 <?php
-namespace controller;
+namespace Coriolis\controller;
 
 class Recherche_Plus_Controller
 {
@@ -12,16 +12,16 @@ class Recherche_Plus_Controller
             } else {
               echo $twig->render('erreur_404.html.twig');
                 }
-            $datas_recherche= new \model\SearchManager_Model;
+            $datas_recherche= new \Coriolis\model\SearchManager_Model;
             $datas_recherche= $datas_recherche->Selected_Data();
-            $datas_effet= new \model\EffetManager_Model();
+            $datas_effet= new \Coriolis\model\EffetManager_Model();
             $datas_effet=$datas_effet->showEffect();
-            $datas_prepa= new \model\PrepaManager_Model();
+            $datas_prepa= new \Coriolis\model\PrepaManager_Model();
             $datas_prepa=$datas_prepa->showPrepa();
             if (!isset($datas_effet) || !isset($datas_prepa)) {
                 echo $twig->render('erreur_404.html.twig');
              }  else {
-                echo $twig->render('recherche+_view.html.twig',['datas_recherche'=> $datas_recherche, 'datas_effet'=> $datas_effet, 'datas_prepa'=> $datas_prepa, 'id'=> $id_plante]);
+                echo $twig->render('recherche+_view.html.twig',['datas_recherche'=> $datas_recherche, 'datas_effet'=> $datas_effet,'datas_prepa'=> $datas_prepa, 'id'=> $id_plante]);
              }          
            
 

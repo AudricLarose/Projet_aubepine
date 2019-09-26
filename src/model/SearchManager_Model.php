@@ -1,8 +1,7 @@
 <?php
-namespace model;
+namespace Coriolis\model;
 
-include_once 'model/connexion.model.php';
-class SearchManager_Model extends Connexion 
+class SearchManager_Model extends Connexion_model
 {
 	public function getData () {
 		$req='SELECT * FROM plantes' ;
@@ -13,7 +12,7 @@ class SearchManager_Model extends Connexion
 				$data[]=$x;
 			}
 			foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
@@ -31,14 +30,12 @@ class SearchManager_Model extends Connexion
 				$data[]=$x;
 			}
 			foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
             return $datae;		
-        } else {
-			echo "pas de resultat";
-		}
+        } 
 	}
 	public function Selected_Data (){
 		$id_plante=$_GET['id_plante'];
@@ -50,7 +47,7 @@ class SearchManager_Model extends Connexion
 			    $data[]=$x;
 		    }
 			foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
@@ -60,9 +57,8 @@ class SearchManager_Model extends Connexion
 		}
 	}
 	public function recherche_par_effet (){
-		if (isset($_POST['saisie_recherche_par_effet'])){
-		$mot_clef=$_POST['saisie_recherche_par_effet'];
-		var_dump($mot_clef);
+		if (isset($_POST['effet'])){
+		$mot_clef=$_POST['effet'];
 		$req="SELECT * FROM plantes WHERE effet_1 LIKE '%".$mot_clef."%'";
 		$resultat=$this->connected()->prepare($req);
 		$resultat->execute();
@@ -71,10 +67,12 @@ class SearchManager_Model extends Connexion
 			    $data[]=$x;
 		    }
 			foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
                     $data_hydrated->hydratation($datas);
+                    $datae[]=[ "requete" => $mot_clef];
                     $datae[]=$data_hydrated;
             }
+            $datae[]=[ "requete" => $mot_clef];
             return $datae;
 		} else {
 			    echo "pas de resultat";
@@ -82,8 +80,8 @@ class SearchManager_Model extends Connexion
 	}
 }
 	public function recherche_par_prepa (){
-		if (isset($_POST['saisie_recherche_par_prepa'])){
-			$mot_clef=$_POST['saisie_recherche_par_prepa'];
+		if (isset($_POST['prepa'])){
+			$mot_clef=$_POST['prepa'];
 			$req="SELECT * FROM plantes WHERE prepa_1 LIKE '%".$mot_clef."%'";
 			$resultat=$this->connected()->prepare($req);
 			$resultat->execute();
@@ -92,8 +90,9 @@ class SearchManager_Model extends Connexion
 			    	$data[]=$x;
 		    	}
 			foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
                     $data_hydrated->hydratation($datas);
+                    $datae[]=[ "requete" => $mot_clef];
                     $datae[]=$data_hydrated;
             }
             return $datae;
@@ -115,8 +114,9 @@ class SearchManager_Model extends Connexion
 			    $data[]=$x;
 		    }
 					foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
                     $data_hydrated->hydratation($datas);
+                    $datae[]=[ "requete" => $mot_clef];
                     $datae[]=$data_hydrated;
             }
             return $datae;
@@ -130,7 +130,6 @@ class SearchManager_Model extends Connexion
 	public function recherche_par_espece (){
 		if (isset($_POST['recherche_par_espece'])){
 		$mot_clef=$_POST['recherche_par_espece'];
-		var_dump($mot_clef);
 		$req="SELECT * FROM plantes WHERE espece LIKE '%".$mot_clef."%'";
 		$resultat=$this->connected()->prepare($req);
 		$resultat->execute();
@@ -139,10 +138,12 @@ class SearchManager_Model extends Connexion
 			    $data[]=$x;
 		    }
 			foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
                     $data_hydrated->hydratation($datas);
+					$datae[]=[ "requete" => $mot_clef];
                     $datae[]=$data_hydrated;
             }
+            $datae[]=[ "requete" => $mot_clef];
             return $datae;
 		} else {
 			    echo "pas de resultat";

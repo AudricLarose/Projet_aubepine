@@ -3,25 +3,26 @@
 Recherche
 {% endblock %}
 {% block content %}
+  <h2 class="center">Recherche par catégorie</h2> <br><br>
                   {% if resultats is not empty %}
 <div class="tableau d-flex justify-content-center align-item-center align-content-center column">
-<h2 class="center"> Resultat des recherches</h2><br><br>
+<h2 class="center"> Resultat des recherches " {% filter title %}{{requete}}{% endfilter %}"</h2><br><br>
 <table>
     <tr>
-        <th class="center isBordered isBrown">Nom</th>
-        <th class="center isBordered isBgreen">Prepa</th>
-        <th class="center isBordered isBrown3">Espece</th>
-        <th class="center isBordered isBrown2">Effet</th>
+        <th class="center  isBordered isBrown">Nom</th>
+        <th class="center  isBordered isBgreen">Prepa</th>
+        <th class="center  isBordered isBrown3">Espece</th>
+        <th class="center  isBordered isBrown2">Effet</th>
     </tr>
         {% for resultat in resultats %}
-
+        {% if resultat.nom is not empty %}
        <tr >
-        <td class="center isBordered ">
+        <td class="center  isBordered-side ">
             {% filter title %}{{resultat.nom}}{% endfilter %}       </td>
-        <td class="center  d-flex justify-content-center align-content-center align-item-center ">
+        <td class="center  d-flex justify-content-center align-content-center align-item-center  ">
             {% filter title %}{{resultat.prepa}}{% endfilter %}  <br>
         </td>
-        <td class="center isBordered ">
+        <td class="center  isBordered-side ">
            {% filter title %}{{resultat.espece}}{% endfilter %}  
         </td>
         <td class="center d-flex justify-content-center align-content-center align-item-center ">
@@ -29,6 +30,8 @@ Recherche
 
         </td>
     </tr>
+         {% endif %}
+
      {% endfor %}
 </table>
 </div>
@@ -44,8 +47,8 @@ Recherche
         {% for wordcloud_nom in wordcloud_noms %}
                 <option  value="{{wordcloud_nom[0]}}">{% filter title %}{{wordcloud_nom[0]}}{% endfilter %}</option>         
      {% endfor %}
-          </select>
-          <input type="submit" name="saisie_recherche_par_nom" value="valider"></form>
+          </select><br><br>
+          <input type="submit" name="saisie_recherche_par_nom"  value="valider"></form>
         </div><br>
     </article>
     <article class=" " id="categorie_espece">
@@ -56,7 +59,7 @@ Recherche
         {% for wordcloud_espece in wordcloud_especes %}
                 <option  value="{{wordcloud_espece[0]}}">{% filter title %}{{wordcloud_espece[0]}}{% endfilter %}</option>         
      {% endfor %}
-          </select>
+          </select><br><br>
           <input type="submit" name="saisie_recherche_par_espece" value="valider"></form>
         </div><br>
     </article>
@@ -68,19 +71,19 @@ Recherche
         {% for wordcloud_prepa in wordcloud_prepas %}
                 <option value="{{wordcloud_prepa[0]}}">{% filter title %}{{wordcloud_prepa[0]}}{% endfilter %}</option>         
      {% endfor %}
-          </select>
+          </select><br><br>
           <input type="submit" name="saisie_recherche_par_prepa" value="valider"></form>
         </div><br>
     </article>
     <article class=" " id="categorie_effet">
-        <h3 class="center ">effet</h3><br>
+        <h3 class="center ">Effet</h3><br>
         <div class="d-flex isRow justify-content-center">
               <form method="POST" action ="index.php?action=resultat_recherche">
                 <select name="effet">
         {% for wordcloud_effet in wordcloud_effets %}
                 <option name="recherche_par_effet" value="{{wordcloud_effet[0]}}">{% filter title %}{{wordcloud_effet[0]}}{% endfilter %}</option>         
      {% endfor %}
-          </select>
+          </select><br><br>
           <input type="submit" name="saisie_recherche_par_effet" value="valider"></form>
     </div><br>
     </article>

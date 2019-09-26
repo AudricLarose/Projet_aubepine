@@ -1,5 +1,5 @@
 <?php
-namespace controller;
+namespace Coriolis\controller;
 
 class Resultat_Recherche_Controller
 {
@@ -8,7 +8,7 @@ class Resultat_Recherche_Controller
         {
             $resultats= null;
             $content_onglet_titre="Resultat Recherche";
-            $resultat_recherche= new \model\SearchManager_Model;
+            $resultat_recherche= new \Coriolis\model\SearchManager_Model;
             $resultat_recherche_par_nom= $resultat_recherche->recherche_par_nom();
             $resultat_recherche_par_prepa= $resultat_recherche->recherche_par_prepa();
             $resultat_recherche_par_espece= $resultat_recherche->recherche_par_espece();
@@ -19,8 +19,6 @@ class Resultat_Recherche_Controller
             $wordcloud_effets= $resultat_recherche->wordCloud_by('effet','effet');
             if (isset($resultat_recherche_par_nom)) {
                 $resultats=$resultat_recherche_par_nom;
-                // $resultats_effet=$resultat_recherche_par_nom_effet;
-                // $resultats_prepa=$resultat_recherche_par_nom_prepa;
             }
             if (isset($resultat_recherche_par_prepa)) {
                 $resultats=$resultat_recherche_par_prepa;
@@ -31,7 +29,8 @@ class Resultat_Recherche_Controller
             if (isset($resultat_recherche_par_effet)) {
                 $resultats=$resultat_recherche_par_effet;
             }
-            echo $twig->render('resultat_recherche_view.html.twig',[ "resultats"=>$resultats,'wordcloud_noms'=> $wordcloud_noms, 'wordcloud_prepas'=> $wordcloud_prepas, 'wordcloud_especes'=> $wordcloud_especes, 'wordcloud_effets'=> $wordcloud_effets]);
+            $requete=$resultats[0]['requete'];
+            echo $twig->render('resultat_recherche_view.html.twig',[ "resultats"=>$resultats,'wordcloud_noms'=> $wordcloud_noms,'requete'=> $requete, 'wordcloud_prepas'=> $wordcloud_prepas, 'wordcloud_especes'=> $wordcloud_especes, 'wordcloud_effets'=> $wordcloud_effets]);
         } catch (\Exception $e) {
             echo $twig->render('error_404.html.twig');
         }

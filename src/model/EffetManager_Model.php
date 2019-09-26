@@ -1,14 +1,12 @@
 <?php
-namespace model;
+namespace Coriolis\model;
 
-include_once 'model/connexion.model.php';
-class EffetManager_Model extends Connexion 
+class EffetManager_Model extends Connexion_model
 {
 public function showEffect()
     {
         $id=$_GET['id_plante'];
         $ide=intval($id);
-        var_dump($id);
         $req='SELECT * FROM effet WHERE id_plante=?';
         $resultat=$this->connected()->prepare($req);
         $resultat->execute([$ide]);
@@ -17,7 +15,7 @@ public function showEffect()
                 $data[]=$x;
             }
             foreach ($data as $datas) {
-                    $data_hydrated= new \model\Entity_Effet_Model();
+                    $data_hydrated= new \Coriolis\model\Entity_Effet_Model();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
