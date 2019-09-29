@@ -37,7 +37,7 @@ class init_Controller
                             header('location:index.php?action=montrer_quizz&error=inconnu');
                             exit();
                         }
-                    } else  {
+                    } else {
                         header('location:index.php?action=montrer_quizz&error=extension');
                         exit();
                     }

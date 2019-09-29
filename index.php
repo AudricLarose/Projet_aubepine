@@ -54,16 +54,16 @@ if (isset($_GET['action'])) {
                 break;
             }
         case 'ajax_score':
-        if (isset($_SESSION['admin'])) {
-            if (isset($_POST['score'])) {
-                $score=$_POST['score'];
-            } else {
-                $score = " ";
+            if (isset($_SESSION['admin'])) {
+                if (isset($_POST['score'])) {
+                    $score=$_POST['score'];
+                } else {
+                    $score = " ";
+                }
+                $action = new Coriolis\controller\Ajax_Score_Controller();
+                $action->ajax_score($score);
+                break;
             }
-            $action = new Coriolis\controller\Ajax_Score_Controller();
-            $action->ajax_score($score);
-            break;
-        }
         case 'ajax_plante':
             $action = new Coriolis\controller\Ajax_Score_Controller();
             $action->ajax_plante();
@@ -88,12 +88,12 @@ if (isset($_GET['action'])) {
                 $page=1;
             }
             $action = new Coriolis\controller\Liste_Controller();
-            $action->montrerListe($page,$twig);
+            $action->montrerListe($page, $twig);
             break;
         case 'score':
             if (isset($_POST['score'])) {
                 $score=isset($_POST['score']);
-            } else { 
+            } else {
                 $score= " ";
             }
             $action = new Coriolis\controller\Quizz_Controller();

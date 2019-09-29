@@ -1,7 +1,7 @@
 <?php
 namespace Coriolis\model ;
 
-class Entity_User_Model 
+class Entity_User_Model
 {
     private $id;
     private $user;
@@ -40,7 +40,7 @@ class Entity_User_Model
     {
          $this->img=$img;
     }
-    public function hydratation ($donnée)
+    public function hydratation($donnée)
     {
         $this->setId($donnée['id']);
         $this->setUser($donnée['user']);
