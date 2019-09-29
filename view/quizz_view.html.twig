@@ -3,22 +3,46 @@
 Quizz
 {% endblock %}
 {% block content %}
-  <h2> QUIZZ </h2>
-<div class="bigbloc isBordered height-auto">{{content_invite_admin}}
+  <h2 class="center"> QUIZZ !! </h2>
+  <div class="bigbloc   height-auto">
+  <div class="bloc_avatar d-flex isRow ">
+      <div class="bloc3 height-10 perso-avatar"><img class="avatar" src="./Upload/{{getPlayer[0].img}}"/></div>
+<div class="info">
+  {{content_invite_admin}}
   <div class="bloc_score">Votre Score :<span class="score">{{ score }}</span></div>
-  <a href="index.php?action=deconnection">deconnexion</a>
-  <div class="bigbloc isBordered d-flex justify-content-center align-item-center align-content-center height-60">
-    <div class="bloc11 isBordered height-40 d-flex justify-content-center align-item-center align-content-center img_profile width-40" id="guess">
+  <button class='js-click'>Modification</button><br>
+  <a href="index.php?action=deconnection">deconnexion</a><br>
+  <a href="index.php?action=montrer_liste">Voir les autres profils</a>
+  </div>
+</div>
+
+
+  <div class="bigbloc   d-flex justify-content-center align-item-center align-content-center height-60">
+    <div class="bloc11   height-40 d-flex justify-content-center align-item-center align-content-center img_profile width-40" id="guess">
     </div>
   </div>
-  <div class="bigbloc isBordered  d-flex justify-content-center align-item-center align-content-center mobile_adapt_bloc_d-column">
+  <div class="overlay au_Milieu">
+    <div class="overlay_block d-flex justify-content-around align-content-center align-item-center">
+<form method="POST" action="index.php?action=montrer_quizz">
+  Votre nom actuellement c'est : {{name}}<br><br>
+  <input type="text" name="new_name" placeholder="modifier votre nom"></input><br>
+  <input type="submit" name="modifier_nom" value="modifier nom"></input>
+</form>
+<form method="POST" action="index.php?action=montrer_quizz" enctype="multipart/form-data">
+  <input type="file" name="file"/><br>
+  <input type="submit" name="modifier_photo" value="Modifier photo"></input>
+</form>
+</div>
+  </div>
+  <div class="band isBordered center au_Milieu js-juge"></div>
+  <div class="bigbloc    d-flex justify-content-center align-item-center align-content-center mobile_adapt_bloc_d-column">
     <div class="column full-width d-flex justify-content-center align-content-center">
-      <div class="bloc7 width-30 height-10 isBordered bloc_quizz isBgreen isWhite d-grid"><h1 class="d-flex justify-content-center align-item-center align-content-center cursor" id='js-choix-1'></h1></div>
-      <div class="bloc7 width-30 height-10 isBordered bloc_quizz isBrown2 isWhite d-grid"><h1 class="d-flex justify-content-center align-item-center align-content-center cursor" id='js-choix-2'></h1></div>
+      <div class="bloc7 width-30 height-10   bloc_quizz isBgreen isWhite d-grid"><h1 class="d-flex justify-content-center align-item-center align-content-center cursor" id='js-choix-1'></h1></div>
+      <div class="bloc7 width-30 height-10   bloc_quizz isBrown2 isWhite d-grid"><h1 class="d-flex justify-content-center align-item-center align-content-center cursor" id='js-choix-2'></h1></div>
     </div>
     <div class="column full-width d-flex justify-content-center align-content-center">
-      <div class="bloc7 width-30 height-10 isBordered bloc_quizz isBrown isWhite d-grid"><h1 class="d-flex justify-content-center align-item-center align-content-center cursor" id='js-choix-3'></h1></div>
-      <div class="bloc7 width-30 height-10 isBordered bloc_quizz isWhite isDarkBlue d-grid" ><h1 class="d-flex justify-content-center align-item-center align-content-center cursor" id='js-choix-4'></h1></div>
+      <div class="bloc7 width-30 height-10   bloc_quizz isBrown isWhite d-grid"><h1 class="d-flex justify-content-center align-item-center align-content-center cursor" id='js-choix-3'></h1></div>
+      <div class="bloc7 width-30 height-10   bloc_quizz isWhite isDarkBlue d-grid" ><h1 class="d-flex justify-content-center align-item-center align-content-center cursor" id='js-choix-4'></h1></div>
   </div>
 </div>
 </div>

@@ -1,17 +1,18 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
-
+﻿<?php
+require 'vendor/autoload.php';
 require 'Public/Outils/Tools.php';
-include_once 'vendor/autoload.php';
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'on');
+
 $loader = new Twig_Loader_Filesystem('view'); // Dossier contenant les templates
 $twig = new Twig_Environment($loader, array(
       'cache' => false
     ));
 
+
+session_start();
 	$actions = new Coriolis\controller\Init_Controller();
 	$actions->init();
-session_start();
  	$sessions= new \tools\Tools();
         $session=$sessions->sessionactive();
 if (isset($_GET['id_plante'])) {
@@ -90,8 +91,8 @@ if (isset($_GET['action'])) {
 			} else {
 				$page=1;
 			}
-			$action = new Coriolis\controller\Classement_Controller();
-			$action->montrerClassement($page,$twig);
+			$action = new Coriolis\controller\Liste_Controller();
+			$action->montrerListe($page,$twig);
 			break;
 		case 'score':
 			if (isset($_POST['score'])) {

@@ -30,6 +30,15 @@ class Login_Controller
                         case 'caractere':
                             $content_admin= "Attention, les caractères spéciaux ne sont pas admis !";
                             break;
+                        case 'extension':
+                            $content_admin= "Le fichhier n'est pas de la bonne extension !";
+                            break;
+                        case 'taille':
+                            $content_admin= "Votre fichier est trop grand, nous attendons un fichier de moins d'un Mo !";
+                            break;
+                        case 'inconnu':
+                            $content_admin= "Une erreur est survenu lors du telechargement !";
+                            break;
                         case ' ':
                             $content_admin= " ";
                             break;

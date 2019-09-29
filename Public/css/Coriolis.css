@@ -12,10 +12,10 @@ input[type=button], input[type=submit], input[type=reset], button, .button {
 	color: #FFFFFF;
 	cursor: pointer;
 	background: #bb971a;
-	background: linear-gradient(top, #bb971a 0%, #a27e01 100%);
-	background: -moz-linear-gradient(top, #bb971a 0%, #a27e01 100%);
-	background: -webkit-linear-gradient(top, #bb971a 0%, #a27e01 100%);
-	background: -o-linear-gradient(top, #bb971a 0%, #a27e01 100%);
+	background: linear-gradient(to top, #bb971a 0%, #a27e01 100%);
+	background: -moz-linear-gradient(to top, #bb971a 0%, #a27e01 100%);
+	background: -webkit-linear-gradient(to top, #bb971a 0%, #a27e01 100%);
+	background: -o-linear-gradient(to top, #bb971a 0%, #a27e01 100%);
 	border: 1px solid #959fa4;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -29,10 +29,10 @@ input[type=button], input[type=submit], input[type=reset], button, .button {
 	height: auto;
 }
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, button:hover, .button:hover {
-	background: linear-gradient(top, #d5b134 0%, #bb971a 100%);
-	background: -moz-linear-gradient(top, #d5b134 0%, #bb971a 100%);
-	background: -webkit-linear-gradient(top, #d5b134 0%, #bb971a 100%);
-	background: -o-linear-gradient(top, #d5b134 0%, #bb971a 100%);
+	background: linear-gradient(to top, #d5b134 0%, #bb971a 100%);
+	background: -moz-linear-gradient(to top, #d5b134 0%, #bb971a 100%);
+	background: -webkit-linear-gradient(to top, #d5b134 0%, #bb971a 100%);
+	background: -o-linear-gradient(to top, #d5b134 0%, #bb971a 100%);
 }
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active, button:active, .button:active{
 	opacity:0.8;
@@ -94,6 +94,9 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active, 
     height: auto;
     width: 100%;
 }
+.info{
+	width: 100px;
+}
 .img_profile img{
 	background:no-repeat center;
 	   background-size: cover;
@@ -112,6 +115,22 @@ a:hover {
 	text-decoration: none;
 	color: black;
 }
+.bloc_avatar{
+	justify-content: flex-end;
+}
+.info{
+	width: 200px;
+}
+.avatar {
+    width: 125px;
+    height: auto;
+}
+.perso-avatar{
+	overflow: hidden;
+	width: 125px;
+	margin-right: 10px;
+
+}
 @media only screen and (max-width:580px) {
 	.square{
 		width: 140px;
@@ -129,6 +148,9 @@ a:hover {
 		display: none!important;
 	}
 	.mobile_adapt_bloc_full-margin{
+		width: 100%;
+	}
+	select{
 		width: 100%;
 	}
 	.round2 {

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 namespace Coriolis\model;
 
 class Connexion_model {
