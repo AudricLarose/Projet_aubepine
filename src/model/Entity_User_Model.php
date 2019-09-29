@@ -46,6 +46,5 @@ class Entity_User_Model
         $this->setUser($donnée['user']);
         $this->setScore($donnée['score']);
         $this->setImg($donnée['img']);
-
     }
 }
