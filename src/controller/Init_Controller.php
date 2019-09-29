@@ -12,7 +12,7 @@ class init_Controller
 
         if (isset($_POST['inscription'])) {
             $fileNameNew=0;
-            if (isset($_FILES['file'])){
+            if (isset($_FILES['file'])) {
                 $file=$_FILES['file'];
                 $fileName=$_FILES['file']['name'];
                 $fileTmpName=$_FILES['file']['tmp_name'];
@@ -22,20 +22,20 @@ class init_Controller
                 $fileExt=explode('.', $fileName);
                 $fileActualExt= strtolower(end($fileExt));
                 $allowed = array('jpg','jpeg','png');
-                if (!empty($fileName)){
+                if (!empty($fileName)) {
                     if (in_array($fileActualExt, $allowed)) {
                         if ($fileError===0) {
                             if ($fileSize<1000000) {
-                                $fileNameNew=uniqid('',true).".".$fileActualExt;
+                                $fileNameNew=uniqid ('',true).".".$fileActualExt;
                                 $fileDestination = 'upload/'.$fileNameNew;
                                 move_uploaded_file($fileTmpName, $fileDestination);
                             } else {
-                   header('location:index.php?action=montrer_quizz&error=taille');
-                   exit();
+                                header('location:index.php?action=montrer_quizz&error=taille');
+                                exit();
                             }
                         } else {
-                   header('location:index.php?action=montrer_quizz&error=inconnu');
-                    exit();
+                            header('location:index.php?action=montrer_quizz&error=inconnu');
+                            exit();
                         }
                     } else  {
                         header('location:index.php?action=montrer_quizz&error=extension');
@@ -43,7 +43,7 @@ class init_Controller
                     }
                 } else {
                     $fileNameNew=0;
-            }
+                }
             }
             $action= new \Coriolis\model\Users_Manager;
             $action-> login($fileNameNew);
@@ -66,28 +66,27 @@ class init_Controller
                     if (in_array($fileActualExt, $allowed)) {
                         if ($fileError===0) {
                             if ($fileSize<1000000) {
-                                $fileNameNew=uniqid('',true).".".$fileActualExt;
+                                $fileNameNew=uniqid('', true).".".$fileActualExt;
                                 $fileDestination = 'upload/'.$fileNameNew;
                                 move_uploaded_file($fileTmpName, $fileDestination);
                                 $action= new \Coriolis\model\Users_Manager;
-                    $action-> modifier_photo($fileNameNew,$name);
+                                $action-> modifier_photo($fileNameNew, $name);
                             } else {
-                   header('location:index.php?action=montrer_quizz&error=taille');
-                   exit();
+                               header('location:index.php?action=montrer_quizz&error=taille');
+                               exit();
                             }
                         } else {
-                   header('location:index.php?action=montrer_quizz&error=inconnu');
-                    exit();
+                            header('location:index.php?action=montrer_quizz&error=inconnu');
+                            exit();
                         }
-                    } else  {
-                   header('location:index.php?action=montrer_quizz&error=extension');
-                    exit();
+                    } else {
+                        header('location:index.php?action=montrer_quizz&error=extension');
+                        exit();
                     }
                 } else {
                     $fileNameNew=0;
                 }
-            }
-            
+            }            
         }
         if (isset($_POST['connexion'])) {
             $action= new \Coriolis\model\Users_Manager;
