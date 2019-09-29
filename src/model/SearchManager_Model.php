@@ -22,7 +22,7 @@ class SearchManagerModel extends ConnexionModel
             echo "pas de resultat";
         }
     }
-    public function searchDataByLetter ($letter) 
+    public function searchDataByLetter($letter)
     {
         $req="SELECT * FROM plantes WHERE nom LIKE '".$letter."%'";
         $resultat=$this->connected()->prepare($req);
@@ -94,13 +94,13 @@ class SearchManagerModel extends ConnexionModel
                 while ($x=$resultat->fetch()) {
                     $data[]=$x;
                 }
-            foreach ($data as $datas) {
+                foreach ($data as $datas) {
                     $data_hydrated= new \Coriolis\model\Entity_Search_Model();
                     $data_hydrated->hydratation($datas);
                     $datae[]=[ "requete" => $mot_clef];
                     $datae[]=$data_hydrated;
-                }
-                return $datae;            
+                    }
+                return $datae;
             } else {
                 echo "pas de resultat";
             }
@@ -108,7 +108,7 @@ class SearchManagerModel extends ConnexionModel
     }
     public function recherche_par_nom()
     {
-        if (isset($_POST['recherche_par_nom'])){
+        if (isset($_POST['recherche_par_nom'])) {
             $mot_clef=$_POST['recherche_par_nom'];
             $req="SELECT * FROM plantes WHERE nom LIKE '%".$mot_clef."%'";
             $resultat=$this->connected()->prepare($req);
@@ -117,11 +117,11 @@ class SearchManagerModel extends ConnexionModel
                 while ($x=$resultat->fetch()) {
                     $data[]=$x;
                 }
-                        foreach ($data as $datas) {
-                            $data_hydrated= new \Coriolis\model\Entity_Search_Model();
-                            $data_hydrated->hydratation($datas);
-                            $datae[]=[ "requete" => $mot_clef];
-                            $datae[]=$data_hydrated;
+                foreach ($data as $datas) {
+                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
+                    $data_hydrated->hydratation($datas);
+                    $datae[]=[ "requete" => $mot_clef];
+                    $datae[]=$data_hydrated;
                 }
                 return $datae;
             } else {
@@ -158,7 +158,7 @@ class SearchManagerModel extends ConnexionModel
         $req="SELECT DISTINCT ".$type." FROM  ".$bdd." ORDER BY ".$type;
         $resultat=$this->connected()->prepare($req);
         $resultat->execute();
-        if($resultat->rowCount()) {
+        if ($resultat->rowCount()) {
             while ($x=$resultat->fetch()) {
                 $data[]=$x;
             }

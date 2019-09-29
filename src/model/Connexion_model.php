@@ -1,13 +1,14 @@
 <?php
 namespace Coriolis\model;
 
-class ConnexionModel 
+class ConnexionModel
 {
     private $serveur='localhost';
     private $name='root';
     private $passwword='';
     private $bddname='remede';
-    public function connected(){
+    public function connected()
+    {
         try {
             $conn= new \PDO ('mysql:host='.$this->serveur.';charset=utf8;dbname='.$this->bddname, $this->name, $this->passwword);
             return $conn;

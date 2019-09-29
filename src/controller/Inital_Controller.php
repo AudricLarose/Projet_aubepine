@@ -3,9 +3,8 @@ namespace Coriolis\controller;
 
 class Inital_Controller
 {
-    public function initial ($twig) 
+    public function initial($twig)
     {
-    echo $twig->render('initial.html.twig');
-
+    	echo $twig->render('initial.html.twig');
     }
 }

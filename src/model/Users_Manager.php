@@ -8,7 +8,7 @@ class Users_Manager extends Connexion_model
         $req="SELECT * FROM user1 WHERE user=?";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute([$name]);
-        if($resultat->rowCount()) {
+        if ($resultat->rowCount()) {
             $nombre_de_joueurs=$resultat->rowCount();
             while ($x=$resultat->fetch()) {
                 $data[]=$x;
@@ -42,7 +42,7 @@ class Users_Manager extends Connexion_model
             header('location:index.php?action=montrer_quizz&error=notsame');
             exit();
         } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-           header('location:index.php?action=montrer_quizz&error=caractere');
+            header('location:index.php?action=montrer_quizz&error=caractere');
             exit();
         } else {
             $sql ="SELECT * FROM user1 WHERE user=?";
@@ -104,13 +104,12 @@ class Users_Manager extends Connexion_model
             }
         }
     }
-    public function modifier_photo($fileNameNew,$name)
+    public function modifier_photo($fileNameNew, $name)
     {
         $req="UPDATE user1 SET img = ? WHERE user=?";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute([$fileNameNew,$name]);
         header('location:index.php?action=montrer_quizz&name='.$username);
-
     }
     public function verifie()
     {
@@ -120,8 +119,8 @@ class Users_Manager extends Connexion_model
             header('location:index.php?action=montrer_quizz&error=champs_vide');
             exit();
         } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-           header('location:index.php?action=montrer_quizz&error=caractere');
-           exit();
+            header('location:index.php?action=montrer_quizz&error=caractere');
+            exit();
         } else {
             $req="SELECT * FROM user1 WHERE user=?;";
             $sql=$this->connected()->prepare($req);
@@ -136,7 +135,7 @@ class Users_Manager extends Connexion_model
                         $name=$data[0]['user'];
                         header('location:index.php?action=montrer_quizz');
                     } else {
-                   header('location:index.php?action=montrer_quizz&error=wrongpwd');
+                        header('location:index.php?action=montrer_quizz&error=wrongpwd');
                     }                    
                 }
             }
@@ -147,8 +146,8 @@ class Users_Manager extends Connexion_model
         $req="SELECT score FROM user1 WHERE user='".$user."'";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute();
-        if($resultat->rowCount()) {
-            if($resultat->rowCount()) {
+        if ($resultat->rowCount()) {
+            if ($resultat->rowCount()) {
                 while ($x=$resultat->fetch()) {
                     $data[]=$x;
                 }
@@ -163,9 +162,9 @@ class Users_Manager extends Connexion_model
         $req="SELECT * FROM user1 ORDER by score DESC LIMIT ".$x.",2";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute();
-        if($resultat->rowCount()){
+        if ($resultat->rowCount()) {
             $nombre_de_joueurs=$resultat->rowCount();
-            while ($x=$resultat->fetch()){
+            while ($x=$resultat->fetch()) {
                 $data[]=$x;
             }
             foreach ($data as $datas) {
