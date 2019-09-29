@@ -3,7 +3,7 @@ namespace Coriolis\model;
 
 class EffetManager_Model extends Connexion_model
 {
-public function showEffect()
+    public function showEffect()
     {
         $id=$_GET['id_plante'];
         $ide=intval($id);

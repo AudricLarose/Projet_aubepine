@@ -26,7 +26,7 @@ class init_Controller
                     if (in_array($fileActualExt, $allowed)) {
                         if ($fileError===0) {
                             if ($fileSize<1000000) {
-                                $fileNameNew=uniqid ('',true).".".$fileActualExt;
+                                $fileNameNew=uniqid('', true).".".$fileActualExt;
                                 $fileDestination = 'upload/'.$fileNameNew;
                                 move_uploaded_file($fileTmpName, $fileDestination);
                             } else {
@@ -72,8 +72,8 @@ class init_Controller
                                 $action= new \Coriolis\model\Users_Manager;
                                 $action-> modifier_photo($fileNameNew, $name);
                             } else {
-                               header('location:index.php?action=montrer_quizz&error=taille');
-                               exit();
+                                header('location:index.php?action=montrer_quizz&error=taille');
+                                exit();
                             }
                         } else {
                             header('location:index.php?action=montrer_quizz&error=inconnu');
@@ -86,7 +86,7 @@ class init_Controller
                 } else {
                     $fileNameNew=0;
                 }
-            }            
+            }
         }
         if (isset($_POST['connexion'])) {
             $action= new \Coriolis\model\Users_Manager;

@@ -3,7 +3,7 @@ namespace Coriolis\model;
 
 class PrepaManager_Model extends Connexion_model 
 {
-public function showPrepa()
+    public function showPrepa()
     {
         $id=$_GET['id_plante'];
         $ide=intval($id);
