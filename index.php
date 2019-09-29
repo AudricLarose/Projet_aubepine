@@ -3,112 +3,107 @@ require 'vendor/autoload.php';
 require 'Public/Outils/Tools.php';
 // error_reporting(E_ALL);
 // ini_set('display_errors', 'on');
-
-$loader = new Twig_Loader_Filesystem('view'); // Dossier contenant les templates
+$loader = new Twig_Loader_Filesystem('view');
 $twig = new Twig_Environment($loader, array(
       'cache' => false
-    ));
-
-
+));
 session_start();
-	$actions = new Coriolis\controller\Init_Controller();
-	$actions->init();
- 	$sessions= new \tools\Tools();
-        $session=$sessions->sessionactive();
+$actions = new Coriolis\controller\Init_Controller();
+$actions->init();
+$sessions= new \tools\Tools();
+$session=$sessions->sessionactive();
 if (isset($_GET['id_plante'])) {
-	$id_plante=$_GET['id_plante'];
+    $id_plante=$_GET['id_plante'];
 }
 if (isset($_GET['action'])) {
-	if (isset($_GET['id_plante']))
-	{
-			$action = $_GET['id_plante'];
-	}
-	$action = $_GET['action'];
-	switch ($action) {
-		case 'montrer_recherche':
-			$action = new Coriolis\controller\Recherche_Plus_Controller();
-			$action->recherche_plus($twig);
-			break;
-		case 'montrer_documentation':
-			$action = new Coriolis\controller\Documentation_Controller();
-			$action->documentation($twig);
-			break;
-		case 'resultat_recherche':
-			$action = new Coriolis\controller\Resultat_Recherche_Controller();
-			$action->resultat_recherche($twig);
-			break;
-		case 'montrer_quizz':
-		if (isset($_SESSION['admin'])) {
-			if (isset($_POST['score'])) {
+    if (isset($_GET['id_plante'])) {
+            $action = $_GET['id_plante'];
+    }
+    $action = $_GET['action'];
+    switch ($action) {
+        case 'montrer_recherche':
+            $action = new Coriolis\controller\Recherche_Plus_Controller();
+            $action->recherche_plus($twig);
+            break;
+        case 'montrer_documentation':
+            $action = new Coriolis\controller\Documentation_Controller();
+            $action->documentation($twig);
+            break;
+        case 'resultat_recherche':
+            $action = new Coriolis\controller\Resultat_Recherche_Controller();
+            $action->resultat_recherche($twig);
+            break;
+        case 'montrer_quizz':
+            if (isset($_SESSION['admin'])) {
+                if (isset($_POST['score'])) {
+                    $score=$_POST['score'];
+                } else {
+                    $score = " ";
+                }
+                $action = new Coriolis\controller\Quizz_Controller();
+                $action->quizz($score, $twig);
+                break;
+            } else {
+                if (isset($_GET['error'])) {
+                    $error=$_GET['error'];
+                } else {
+                    $error = " ";
+                }
+                $action = new Coriolis\controller\Login_Controller();
+                $action->montrerLogin($error, $twig);
+                break;
+            }
+        case 'ajax_score':
+        if (isset($_SESSION['admin'])) {
+            if (isset($_POST['score'])) {
                 $score=$_POST['score'];
             } else {
-            	$score = " ";
+                $score = " ";
             }
-   			$action = new Coriolis\controller\Quizz_Controller();
-			$action->quizz($score,$twig);
-			break;
-		} else {
-			if (isset($_GET['error'])) {
-                $error=$_GET['error'];
-            } else {
-                $error = " ";
-            }
-			$action = new Coriolis\controller\Login_Controller();
-			$action->montrerLogin($error,$twig);
-			break;
-		}	
-		case 'ajax_score':
-		if (isset($_SESSION['admin'])) {
-			if (isset($_POST['score'])) {
-                $score=$_POST['score'];
-            } else {
-            	$score = " ";
-            }
-   			$action = new Coriolis\controller\Ajax_Score_Controller();
-			$action->ajax_score($score);
-			break;
-		}
-		case 'ajax_plante':
-   			$action = new Coriolis\controller\Ajax_Score_Controller();
-			$action->ajax_plante();
-			break;
-		case 'ajax_getId':
-		if (isset($_POST['name'])) {
+            $action = new Coriolis\controller\Ajax_Score_Controller();
+            $action->ajax_score($score);
+            break;
+        }
+        case 'ajax_plante':
+            $action = new Coriolis\controller\Ajax_Score_Controller();
+            $action->ajax_plante();
+            break;
+        case 'ajax_getId':
+            if (isset($_POST['name'])) {
                 $name=$_POST['name'];
             } else {
-            	$name = " ";
+                $name = " ";
             }
-   			$action = new Coriolis\controller\Ajax_Score_Controller();
-			$action->ajax_getId($name);
-			break;
-		case 'deconnection':
-			$action = new Coriolis\controller\deconnection_Controller();
-			$action->deco();		
-			break;
-		case 'montrer_liste':
-			if (isset($_GET['page']) ) {
-				$page=$_GET['page'];
-			} else {
-				$page=1;
-			}
-			$action = new Coriolis\controller\Liste_Controller();
-			$action->montrerListe($page,$twig);
-			break;
-		case 'score':
-			if (isset($_POST['score'])) {
-				$score=isset($_POST['score']);
-			} else { 
-				$score= " ";
-			}
-			$action = new Coriolis\controller\Quizz_Controller();
-			$action->quizz_score($score);
-			break;
-		default:
-            echo $twig->render('erreur_404.html.twig');
-
+            $action = new Coriolis\controller\Ajax_Score_Controller();
+            $action->ajax_getId($name);
             break;
-	}
+        case 'deconnection':
+            $action = new Coriolis\controller\deconnection_Controller();
+            $action->deco();
+            break;
+        case 'montrer_liste':
+            if (isset($_GET['page']) ) {
+                $page=$_GET['page'];
+            } else {
+                $page=1;
+            }
+            $action = new Coriolis\controller\Liste_Controller();
+            $action->montrerListe($page,$twig);
+            break;
+        case 'score':
+            if (isset($_POST['score'])) {
+                $score=isset($_POST['score']);
+            } else { 
+                $score= " ";
+            }
+            $action = new Coriolis\controller\Quizz_Controller();
+            $action->quizz_score($score);
+            break;
+        default:
+            echo $twig->render('erreur_404.html.twig');
+            break;
+    }
 } else {
-	$action = new Coriolis\controller\Inital_Controller();
-	$action->initial($twig);
+    $action = new Coriolis\controller\Inital_Controller();
+    $action->initial($twig);
 }
