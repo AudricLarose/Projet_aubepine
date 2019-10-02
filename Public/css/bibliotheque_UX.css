@@ -150,6 +150,9 @@
 .isDarkBlue {
     background-color: #2e393d;
 }
+.gras{
+  font-weight: bold;
+}
 .isBlueish {
     background-color: #178cc2;
 }
@@ -226,7 +229,6 @@ box-shadow:12px 10px 7px 0px #9a9a9a ;
   background-color: #8d866e;
 }
 
-
 .d-flex{
     display: flex;
 }
@@ -258,6 +260,12 @@ box-shadow:12px 10px 7px 0px #9a9a9a ;
 }
 .margin-gauche-droite {
   margin: 0 40px;
+}
+.height-3{
+  height: 30px;
+}
+.width-3{
+  height: 30px;
 }
 .height-auto{
   height: auto!important;
@@ -386,6 +394,36 @@ td{
 .opacity-90{
   opacity: 0.90;
 }
+.margin-bottom-10{
+  margin-bottom: 10px;
+}
+.margin-bottom-20{
+  margin-bottom: 20px;
+}
+.margin-bottom-30{
+  margin-bottom: 30px;
+}
+.margin-bottom-40{
+  margin-bottom: 40px;
+}
+.margin-bottom-50{
+  margin-bottom: 50px;
+}
+.margin-bottom-60{
+  margin-bottom: 60px;
+}
+.margin-bottom-70{
+  margin-bottom: 70px;
+}
+.margin-bottom-80{
+  margin-bottom: 80px;
+}
+.margin-bottom-90{
+  margin-bottom: 90px;
+}
+.margin-bottom-100{
+  margin-bottom: 100px;
+}
 .overlay{
   display: none;
   height: 100%;
@@ -400,9 +438,25 @@ td{
   cursor: pointer;
 }
 
+.overlay-2{
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  background-color: rgba(0,0,0,0.5); 
+  z-index: 2;
+  cursor: pointer;
+}
+.overlay-2:hover{
+  opacity: 1;
+}
 .overlay_block{
     z-index: 3;
-  width: 70%;
-  height: 300px;
+  width: 30%;
+  height: auto;
   background-color: white;
 }

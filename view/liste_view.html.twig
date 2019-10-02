@@ -7,7 +7,7 @@ Liste des membres
 <div class="bigbloc d-flex isRow justify-content-around">
             {% for Liste in Listes[1] %}
       <div class="bloc5  height-60 d-flex justify-content-center column">
-          <div class="square2   height-40">
+          <div class="square2  o-flow height-40 au_Milieu">
       {% if Liste.img %}
                <img class="img_profile" src="./upload/{{Liste.img}}" alt="image upload utilisateur">
       {% else %}
@@ -16,7 +16,7 @@ Liste des membres
           </div><br>
           <div class="bloc_info ">
           <div class="nom">Nom :
-              {{ Liste.user }}
+              {% filter title %}{{ Liste.user }}{% endfilter %}
           </div>
           <div class="point">Point :
               {{ Liste.score}}
@@ -25,7 +25,7 @@ Liste des membres
       </div> 
       {% endfor %}
 </div>
-<div class="pagination band_pagination d-flex justify-content-center">
+<div class="pagination band_pagination d-flex justify-content-center margin-bottom-30">
 {% for i in 1..nombre_de_page+1 %}
         <a href="index.php?action=montrer_liste&page={{i}}" class="lilsquare2 isBrown2   d-flex justify-content-center align-content-center align-item-center isWhite">{{i}}</a>
       {% endfor %}

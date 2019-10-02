@@ -1,13 +1,13 @@
 <?php
 namespace Coriolis\controller;
 
-class init_Controller
+class InitController
 {
     public function init()
     {
         if (isset($_POST['saisie_recherche_par_nom'])) {
-            $action= new \Coriolis\model\SearchManager_Model();
-            $action->recherche_par_nom();
+            $action= new \Coriolis\model\SearchManagerModel();
+            $action->rechercheParNom();
         }
 
         if (isset($_POST['inscription'])) {
@@ -45,7 +45,7 @@ class init_Controller
                     $fileNameNew=0;
                 }
             }
-            $action= new \Coriolis\model\Users_Manager;
+            $action= new \Coriolis\model\UsersManager;
             $action-> login($fileNameNew);
         }
 
@@ -69,8 +69,8 @@ class init_Controller
                                 $fileNameNew=uniqid('', true).".".$fileActualExt;
                                 $fileDestination = 'upload/'.$fileNameNew;
                                 move_uploaded_file($fileTmpName, $fileDestination);
-                                $action= new \Coriolis\model\Users_Manager;
-                                $action-> modifier_photo($fileNameNew, $name);
+                                $action= new \Coriolis\model\UsersManager;
+                                $action-> modifierPhoto($fileNameNew, $name);
                             } else {
                                 header('location:index.php?action=montrer_quizz&error=taille');
                                 exit();
@@ -89,29 +89,29 @@ class init_Controller
             }
         }
         if (isset($_POST['connexion'])) {
-            $action= new \Coriolis\model\Users_Manager;
+            $action= new \Coriolis\model\UsersManager;
             $action-> verifie();
         }
         if (isset($_POST['modifier_nom'])) {
-            $action= new \Coriolis\model\Users_Manager;
+            $action= new \Coriolis\model\UsersManager;
             $ancienname=$_SESSION['admin'];
-            $action-> modifier_nom($ancienname);
+            $action-> modifierNom($ancienname);
         }
         if (isset($_POST['saisie_recherche_par_espece'])) {
-            $action= new \Coriolis\model\SearchManager_Model();
-            $action-> recherche_par_espece();
+            $action= new \Coriolis\model\SearchManagerModel();
+            $action-> rechercheParEspece();
         }
         if (isset($_POST['recherche_par_effet'])) {
-            $action= new \Coriolis\model\SearchManager_Model();
-            $action-> recherche_par_effet();
+            $action= new \Coriolis\model\SearchManagerModel();
+            $action-> rechercheParEffet();
         }
         if (isset($_POST['recherche_par_prepa'])) {
-            $action= new \Coriolis\model\SearchManager_Model();
-            $action-> recherche_par_prepa();
+            $action= new \Coriolis\model\SearchManagerModel();
+            $action-> rechercheParPrepa();
         }
-        if (isset($_POST['recherche_par'])) {
-            $action= new \Coriolis\model\SearchManager_Model();
-            $action-> recherche_par();
-        }
+        // if (isset($_POST['recherche_par'])) {
+        //     $action= new \Coriolis\model\SearchManagerModel();
+        //     $action-> recherchePar();
+        // }
     }
 }

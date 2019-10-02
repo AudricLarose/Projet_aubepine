@@ -1,7 +1,7 @@
 <?php
 namespace Coriolis\model ;
 
-class Entity_User_Model
+class EntityUserModel
 {
     private $id;
     private $user;

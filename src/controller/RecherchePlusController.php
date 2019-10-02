@@ -1,22 +1,21 @@
 <?php
 namespace Coriolis\controller;
 
-class Recherche_Plus_Controller
+class RecherchePlusController
 {
-    public function recherche_plus($twig)
+    public function recherchePlus($twig)
     {
         try {
-            $content_onglet_titre="Classement et recherche";
             if (isset($_GET['id_plante'])) {
                 $id_plante=$_GET['id_plante'];
             } else {
                 echo $twig->render('erreur_404.html.twig');
             }
-            $datas_recherche= new \Coriolis\model\SearchManager_Model;
-            $datas_recherche= $datas_recherche->Selected_Data();
-            $datas_effet= new \Coriolis\model\EffetManager_Model();
+            $datas_recherche= new \Coriolis\model\SearchManagerModel;
+            $datas_recherche= $datas_recherche->selectedData();
+            $datas_effet= new \Coriolis\model\EffetManagerModel();
             $datas_effet=$datas_effet->showEffect();
-            $datas_prepa= new \Coriolis\model\PrepaManager_Model();
+            $datas_prepa= new \Coriolis\model\PrepaManagerModel();
             $datas_prepa=$datas_prepa->showPrepa();
             if (!isset($datas_effet) || !isset($datas_prepa)) {
                 echo $twig->render('erreur_404.html.twig');

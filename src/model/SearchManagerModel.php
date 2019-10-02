@@ -13,7 +13,7 @@ class SearchManagerModel extends ConnexionModel
                 $data[]=$x;
             }
             foreach ($data as $datas) {
-                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\EntitySearchModel();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
@@ -32,14 +32,14 @@ class SearchManagerModel extends ConnexionModel
                 $data[]=$x;
             }
             foreach ($data as $datas) {
-                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\EntitySearchModel();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
             return $datae;
         }
     }
-    public function Selected_Data()
+    public function selectedData()
     {
         $id_plante=$_GET['id_plante'];
         $req='SELECT * FROM plantes WHERE id=?';
@@ -50,7 +50,7 @@ class SearchManagerModel extends ConnexionModel
                 $data[]=$x;
             }
             foreach ($data as $datas) {
-                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\EntitySearchModel();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }
@@ -59,11 +59,11 @@ class SearchManagerModel extends ConnexionModel
             echo "pas de resultat";
         }
     }
-    public function recherche_par_effet()
+    public function rechercheParEffet()
     {
         if (isset($_POST['effet'])) {
             $mot_clef=$_POST['effet'];
-            $req="SELECT * FROM plantes WHERE effet_1 LIKE '%".$mot_clef."%'";
+            $req="SELECT * FROM plantes WHERE effet LIKE '%".$mot_clef."%'";
             $resultat=$this->connected()->prepare($req);
             $resultat->execute();
             if ($resultat->rowCount()) {
@@ -71,7 +71,7 @@ class SearchManagerModel extends ConnexionModel
                     $data[]=$x;
                 }
                 foreach ($data as $datas) {
-                        $data_hydrated= new \Coriolis\model\Entity_Search_Model();
+                        $data_hydrated= new \Coriolis\model\EntitySearchModel();
                         $data_hydrated->hydratation($datas);
                         $datae[]=[ "requete" => $mot_clef];
                         $datae[]=$data_hydrated;
@@ -83,11 +83,11 @@ class SearchManagerModel extends ConnexionModel
             }
         }
     }
-    public function recherche_par_prepa()
+    public function rechercheParPrepa()
     {
         if (isset($_POST['prepa'])) {
             $mot_clef=$_POST['prepa'];
-            $req="SELECT * FROM plantes WHERE prepa_1 LIKE '%".$mot_clef."%'";
+            $req="SELECT * FROM plantes WHERE prepa LIKE '%".$mot_clef."%'";
             $resultat=$this->connected()->prepare($req);
             $resultat->execute();
             if ($resultat->rowCount()) {
@@ -95,7 +95,7 @@ class SearchManagerModel extends ConnexionModel
                     $data[]=$x;
                 }
                 foreach ($data as $datas) {
-                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\EntitySearchModel();
                     $data_hydrated->hydratation($datas);
                     $datae[]=[ "requete" => $mot_clef];
                     $datae[]=$data_hydrated;
@@ -106,7 +106,7 @@ class SearchManagerModel extends ConnexionModel
             }
         }
     }
-    public function recherche_par_nom()
+    public function rechercheParNom()
     {
         if (isset($_POST['recherche_par_nom'])) {
             $mot_clef=$_POST['recherche_par_nom'];
@@ -118,7 +118,7 @@ class SearchManagerModel extends ConnexionModel
                     $data[]=$x;
                 }
                 foreach ($data as $datas) {
-                    $data_hydrated= new \Coriolis\model\Entity_Search_Model();
+                    $data_hydrated= new \Coriolis\model\EntitySearchModel();
                     $data_hydrated->hydratation($datas);
                     $datae[]=[ "requete" => $mot_clef];
                     $datae[]=$data_hydrated;
@@ -129,7 +129,7 @@ class SearchManagerModel extends ConnexionModel
             }
         }
     }
-    public function recherche_par_espece()
+    public function rechercheParEspece()
     {
         if (isset($_POST['recherche_par_espece'])) {
             $mot_clef=$_POST['recherche_par_espece'];
@@ -141,7 +141,7 @@ class SearchManagerModel extends ConnexionModel
                     $data[]=$x;
                 }
                 foreach ($data as $datas) {
-                        $data_hydrated= new \Coriolis\model\Entity_Search_Model();
+                        $data_hydrated= new \Coriolis\model\EntitySearchModel();
                         $data_hydrated->hydratation($datas);
                         $datae[]=[ "requete" => $mot_clef];
                         $datae[]=$data_hydrated;
@@ -153,7 +153,7 @@ class SearchManagerModel extends ConnexionModel
             }
         }
     }
-    public function wordCloud_by($type, $bdd)
+    public function wordCloudBy($type, $bdd)
     {
         $req="SELECT DISTINCT ".$type." FROM  ".$bdd." ORDER BY ".$type;
         $resultat=$this->connected()->prepare($req);
@@ -167,7 +167,7 @@ class SearchManagerModel extends ConnexionModel
                 echo "pas de resultat";
         }
     }
-    public function GetPlanteId($name)
+    public function getPlanteId($name)
     {
         $req="SELECT id FROM plantes WHERE nom='".$name."'";
         $resultat=$this->connected()->prepare($req);

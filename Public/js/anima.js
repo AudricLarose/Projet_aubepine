@@ -8,15 +8,13 @@
 		} else {
 			$('.navig').css('position','relative');
 		}
-	}
+	}	
 
 	apps.detect_opacity=function(x){
 		var size =$(window).scrollTop();
 		if (size>=100){
 			$(x).css('opacity','1');
-			$(x).addClass('isFade');
 		} else {
-			$(x).removeClass('isFade');
 			$(x).css('opacity','0.4');
 		}
 	}

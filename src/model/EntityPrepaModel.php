@@ -1,7 +1,7 @@
 <?php
 namespace Coriolis\model ;
 
-class Entity_Prepa_Model
+class EntityPrepaModel
 {
     private $id;
     private $id_plante;
@@ -10,7 +10,7 @@ class Entity_Prepa_Model
     {
         return $this->id;
     }
-    public function getId_Plante()
+    public function getIdPlante()
     {
         return $this->id_plante;
     }
@@ -26,7 +26,7 @@ class Entity_Prepa_Model
     {
          $this->nom=$nom;
     }
-    public function setId_Plante($id_plante)
+    public function setIdPlante($id_plante)
     {
          $this->id_plante=$id_plante;
     }
@@ -34,10 +34,10 @@ class Entity_Prepa_Model
     {
          $this->prepa=$prepa;
     }
-    public function hydratation ($donnée)
+    public function hydratation($donnée)
     {
         $this->setId($donnée['id']);
-        $this->setId_Plante($donnée['id_plante']);
+        $this->setIdPlante($donnée['id_plante']);
         $this->setPrepa($donnée['prepa']);
     }
 }

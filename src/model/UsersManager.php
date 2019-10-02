@@ -1,11 +1,11 @@
 <?php
 namespace Coriolis\model;
 
-class Users_Manager extends Connexion_model
+class UsersManager extends ConnexionModel
 {
     public function getPlayer($name)
     {
-        $req="SELECT * FROM user1 WHERE user=?";
+        $req="SELECT * FROM users WHERE user=?";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute([$name]);
         if ($resultat->rowCount()) {
@@ -14,7 +14,7 @@ class Users_Manager extends Connexion_model
                 $data[]=$x;
             }
             foreach ($data as $datas) {
-                $data_hydrated= new \Coriolis\model\Entity_User_Model();
+                $data_hydrated= new \Coriolis\model\EntityUserModel();
                 $data_hydrated->hydratation($datas);
                 $datae[]=$data_hydrated;
             }
@@ -45,7 +45,7 @@ class Users_Manager extends Connexion_model
             header('location:index.php?action=montrer_quizz&error=caractere');
             exit();
         } else {
-            $sql ="SELECT * FROM user1 WHERE user=?";
+            $sql ="SELECT * FROM users WHERE user=?";
             $result=$this->connected()->prepare($sql);
             $result->execute([$username]);
             $results=$result->rowCount();
@@ -53,7 +53,7 @@ class Users_Manager extends Connexion_model
                 header('location:index.php?action=montrer_quizz&error=meme_nom');
                 exit();
             } else {
-                $sql ="SELECT * FROM user1 WHERE mail=?";
+                $sql ="SELECT * FROM users WHERE mail=?";
                 $result=$this->connected()->prepare($sql);
                 $result->execute([$mail]);
                 $results=$result->rowCount();
@@ -65,17 +65,17 @@ class Users_Manager extends Connexion_model
                         $fileNameNew=0;
                     }
                     $hashepwd=password_hash($password, PASSWORD_DEFAULT);
-                    $req="INSERT INTO user1 (user, mail, password,img,score) VALUES (?,?,?,?,0)";
+                    $req="INSERT INTO users (user, mail, password,img,score) VALUES (?,?,?,?,0)";
                     $resultat=$this->connected()->prepare($req);
                     $resultat->execute([$username,$mail,$hashepwd,$fileNameNew]);
                     session_start();
-                    $_SESSION['admin']= $username;
+                    $_SESSION['admin']=$username;
                     header('location:index.php?action=montrer_quizz&name='.$username);
                 }
             }
         }
     }
-    public function modifier_nom($ancienname)
+    public function modifierNom($ancienname)
     {
         $username=$_POST['new_name'];
         if (empty($username)) {
@@ -85,7 +85,7 @@ class Users_Manager extends Connexion_model
             header('location:index.php?action=montrer_quizz&error=caractere');
             exit();
         } else {
-            $sql ="SELECT * FROM user1 WHERE user=?";
+            $sql ="SELECT * FROM users WHERE user=?";
             $result=$this->connected()->prepare($sql);
             $result->execute([$username]);
             $results=$result->rowCount();
@@ -93,7 +93,7 @@ class Users_Manager extends Connexion_model
                 header('location:index.php?action=montrer_quizz&error=meme_nom');
                 exit();
             } else {
-                $req="UPDATE user1 SET user = ? WHERE user=?";
+                $req="UPDATE users SET user = ? WHERE user=?";
                 $resultat=$this->connected()->prepare($req);
                 $resultat->execute([$username,$ancienname]);
                 $_SESSION['admin']= array();
@@ -104,12 +104,12 @@ class Users_Manager extends Connexion_model
             }
         }
     }
-    public function modifier_photo($fileNameNew, $name)
+    public function modifierPhoto($fileNameNew, $name)
     {
-        $req="UPDATE user1 SET img = ? WHERE user=?";
+        $req="UPDATE users SET img = ? WHERE user=?";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute([$fileNameNew,$name]);
-        header('location:index.php?action=montrer_quizz&name='.$username);
+        header('location:index.php?action=montrer_quizz');
     }
     public function verifie()
     {
@@ -122,13 +122,13 @@ class Users_Manager extends Connexion_model
             header('location:index.php?action=montrer_quizz&error=caractere');
             exit();
         } else {
-            $req="SELECT * FROM user1 WHERE user=?;";
+            $req="SELECT * FROM users WHERE user=?;";
             $sql=$this->connected()->prepare($req);
             $sql->execute([$username]);
-            if (isset($sql)) {
+            if ($sql->rowCount()) {          
                 while ($ssql=$sql->fetch()) {
                     $passwordcheck=password_verify($password, $ssql['password']);
-                    if ($passwordcheck===true) {
+                    if ($passwordcheck==true) {
                         $data[]=$ssql;
                         session_start();
                         $_SESSION['admin']= $data[0]['user'];
@@ -138,20 +138,20 @@ class Users_Manager extends Connexion_model
                         header('location:index.php?action=montrer_quizz&error=wrongpwd');
                     }                    
                 }
+            } else {
+                header('location:index.php?action=montrer_quizz&error=wrongpwd');
             }
         }
     }
     public function getScore($user)
     {
-        $req="SELECT score FROM user1 WHERE user='".$user."'";
+        $req="SELECT score FROM users WHERE user='".$user."'";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute();
-        if ($resultat->rowCount()) {
-            if ($resultat->rowCount()) {
-                while ($x=$resultat->fetch()) {
+        if ($resultat->rowCount()) {            
+            while ($x=$resultat->fetch()) {
                     $data[]=$x;
-                }
-            }
+            }            
             return $data[0][0];
         } else {
             echo "pas de resultat";
@@ -159,7 +159,7 @@ class Users_Manager extends Connexion_model
     }
     public function getListe($x)
     {
-        $req="SELECT * FROM user1 ORDER by score DESC LIMIT ".$x.",2";
+        $req="SELECT * FROM users ORDER by score DESC LIMIT ".$x.",2";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute();
         if ($resultat->rowCount()) {
@@ -168,7 +168,7 @@ class Users_Manager extends Connexion_model
                 $data[]=$x;
             }
             foreach ($data as $datas) {
-                $data_hydrated= new \Coriolis\model\Entity_User_Model();
+                $data_hydrated= new \Coriolis\model\EntityUserModel();
                 $data_hydrated->hydratation($datas);
                 $datae[]=$data_hydrated;
             }
@@ -181,7 +181,7 @@ class Users_Manager extends Connexion_model
     }
     public function nombreJoueurs()
     {
-        $req="SELECT * FROM user1 ORDER by score DESC ";
+        $req="SELECT * FROM users ORDER by score DESC ";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute();
         $nombre_de_joueurs=$resultat->rowCount();
@@ -191,7 +191,7 @@ class Users_Manager extends Connexion_model
     public function insertScore($score)
     {
         $username=$_SESSION['admin'];
-        $req="UPDATE user1 SET score=".$score." WHERE user=?";
+        $req="UPDATE users SET score=".$score." WHERE user=?";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute([$username]);
     }

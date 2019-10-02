@@ -1,7 +1,7 @@
 <?php
 namespace Coriolis\model;
 
-class PrepaManager_Model extends Connexion_model 
+class PrepaManagerModel extends ConnexionModel 
 {
     public function showPrepa()
     {
@@ -15,7 +15,7 @@ class PrepaManager_Model extends Connexion_model
                 $data[]=$x;
             }
             foreach ($data as $datas) {
-                    $data_hydrated= new \Coriolis\model\Entity_Prepa_Model();
+                    $data_hydrated= new \Coriolis\model\EntityPrepaModel();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }

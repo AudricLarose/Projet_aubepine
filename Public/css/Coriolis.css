@@ -122,16 +122,81 @@ a:hover {
 	width: 200px;
 }
 .avatar {
-    width: 125px;
+    width: 125px;qqq
     height: auto;
 }
 .perso-avatar{
 	overflow: hidden;
 	width: 125px;
 	margin-right: 10px;
+	height: 130px;
 
 }
+.perso-carré-1{
+	width: 50%;
+	height: 600px;
+	position: relative;
+}
+.perso-rectangle-1{
+	width: 100%;
+	height: 300px;
+	position: relative;
+}
+.perso-square-1{
+	width: 50%;
+	height: 300px;
+	position: relative;
+}
+
+.close{
+	display: block;
+	position: relative;
+	left:95%;
+
+}
+.Perso-Ajust{
+	display: inline-table;
+    width: 100%;
+    height: 100%;
+}
+.parall{
+	 background:no-repeat center ;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.gradient-1{
+background: rgb(211,193,121);
+background: radial-gradient(circle, rgba(211,193,121,1) 0%, rgba(180,170,126,1) 35%, rgba(132,122,80,1) 100%);
+}
+.gradient-2{
+background: rgb(208,147,38);
+background: radial-gradient(circle, rgba(208,147,38,1) 0%, rgba(165,129,65,1) 35%, rgba(108,99,84,1) 100%);
+}
+.gradient-3{
+background: rgb(184,151,25);
+background: radial-gradient(circle, rgba(184,151,25,1) 0%, rgba(135,118,55,1) 35%, rgba(89,85,70,1) 100%);
+}
+@media only screen and (max-width:1120px) {
+
+	.parallax{
+		height: 600px;
+	}
+		.square{
+		width: 150px;
+		height: 150px;
+		margin-bottom: 30px;
+	}
+		.round2 {
+    	width: 150px;
+    	height: 150px;
+    	border-radius: 50%;
+	}
+}
+
 @media only screen and (max-width:580px) {
+		.parallax{
+		height: 550px;
+	}
 	.square{
 		width: 140px;
 		height: 150px;
@@ -151,7 +216,7 @@ a:hover {
 		width: 100%;
 	}
 	select{
-		width: 100%;
+		width: 75%;
 	}
 	.round2 {
     	width: 130px;

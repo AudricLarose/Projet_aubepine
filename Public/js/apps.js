@@ -28,7 +28,8 @@
         quizz.init();
         })
     },
-    appls: function(tableau_du_choix,x){
+    event: function(tableau_du_choix,x){
+        $(tableau_du_choix).empty().append(quizz.choix[x]).off("click");
         $(tableau_du_choix).empty().append(quizz.choix[x]).click(function(){
         quizz.choice=$(tableau_du_choix).html();
         if (quizz.choice==quizz.hasard){
@@ -71,7 +72,7 @@
         }
         console.log(this.tableau_des_choix);
         for (var i = 0; i<=this.tableau_des_choix.length-1; i++) {
-            quizz.appls(this.tableau_des_choix[i],i);
+            quizz.event(this.tableau_des_choix[i],i);
         }
     }
 }

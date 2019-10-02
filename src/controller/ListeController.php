@@ -1,13 +1,13 @@
 <?php
 namespace Coriolis\controller;
 
-class Liste_Controller
+class ListeController
 {
     public function montrerListe($page, $twig)
     {
         try {
             $content_onglet_titre="Listes des membres";
-            $data_Listes= new \Coriolis\model\Users_Manager();
+            $data_Listes= new \Coriolis\model\UsersManager();
             if (is_numeric($page)) {
                 $page=($page-1)*2;
             }

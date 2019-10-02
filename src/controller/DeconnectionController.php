@@ -1,7 +1,7 @@
 <?php
 namespace Coriolis\controller;
 
-class Deconnection_controller
+class DeconnectionController
 {
     public function deco()
     {

@@ -1,7 +1,7 @@
 <?php
 namespace Coriolis\controller;
 
-class Inital_Controller
+class InitialController
 {
     public function initial($twig)
     {

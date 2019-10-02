@@ -1,5 +1,6 @@
 $(function(){
 verifie.init();
-quizz.données();  
+quizz.données();
 apps.init();
+
 })

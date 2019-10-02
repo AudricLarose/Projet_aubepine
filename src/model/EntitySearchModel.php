@@ -1,13 +1,13 @@
 <?php
 namespace Coriolis\model ;
 
-class Entity_Search_Model 
+class EntitySearchModel 
 {
     private $id;
     private $nom;
     private $espece;
-    private $effet_1;
-    private $prepa_1;
+    private $effet;
+    private $prepa;
     public function getId()
     {
         return $this->id;
@@ -22,11 +22,11 @@ class Entity_Search_Model
     }
     public function getEffet()
     {
-        return $this->effet_1;
+        return $this->effet;
     }
     public function getPrepa()
     {
-        return $this->prepa_1;
+        return $this->prepa;
     }
     public function setId($id)
     {
@@ -40,20 +40,20 @@ class Entity_Search_Model
     {
          $this->espece=$espece;
     }
-    public function setPrepa($prepa_1)
+    public function setPrepa($prepa)
     {
-         $this->prepa_1=$prepa_1;
+         $this->prepa=$prepa;
     }
-    public function setEffet($effet_1)
+    public function setEffet($effet)
     {
-         $this->effet_1=$effet_1;
+         $this->effet=$effet;
     }
     public function hydratation ($donnée)
     {
         $this->setId($donnée['id']);
         $this->setNom($donnée['nom']);
         $this->setEspece($donnée['espece']);
-        $this->setPrepa($donnée['prepa_1']);
-        $this->setEffet($donnée['effet_1']);
+        $this->setPrepa($donnée['prepa']);
+        $this->setEffet($donnée['effet']);
     }
 }

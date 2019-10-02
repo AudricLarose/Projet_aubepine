@@ -1,17 +1,16 @@
 <?php
 namespace Coriolis\model ;
 
-class Entity_Effet_Model
+class EntityEffetModel
 {
     private $id;
     private $id_plante;
     private $effet;
-
     public function getId()
     {
         return $this->id;
     }
-    public function getId_Plante()
+    public function getIdPlante()
     {
         return $this->id_plante;
     }
@@ -28,7 +27,7 @@ class Entity_Effet_Model
     {
          $this->nom=$nom;
     }
-    public function setId_Plante($id_plante)
+    public function setIdPlante($id_plante)
     {
          $this->id_plante=$id_plante;
     }
@@ -36,10 +35,10 @@ class Entity_Effet_Model
     {
          $this->effet=$effet;
     }
-    public function hydratation ($donnée)
+    public function hydratation($donnée)
     {
         $this->setId($donnée['id']);
-        $this->setId_Plante($donnée['id_plante']);
+        $this->setIdPlante($donnée['id_plante']);
         $this->setEffet($donnée['effet']);
     }
 }

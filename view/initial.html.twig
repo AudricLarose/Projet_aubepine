@@ -3,7 +3,7 @@
 Index
 {% endblock %}
 {% block content %}
-<div class="height-30">
+<div class="height-10 d-flex column au-Milieu margin-bottom-20">
 <h2 class="center ">
 BIENVENUE !
 </h2>
@@ -12,6 +12,51 @@ Voici un site qui permet de vous rendre renseigner sur les plantes medicinales .
 Cela vous permettre de vous guerir plus naturellement.
 Il faut voir ce site comme un ABCDaire plutot qu'un site d'information détaillé sur chaque plante
  Bonne Visite !!
-</div>
 
+</div>
+<div class="bigbloc isBordered d-flex isRow">
+	<div class="isBordered perso-carré-1 ">
+		<div class="isBordered perso-rectangle-1 gradient-1 o-flow hovers"><img class="width-100   hovers" src="images\image1.jpg"/>
+			<a href='index.php?action=montrer_documentation' class="overlay-2 isWhite ">
+				<h3 class="center isWhite">
+			ABCDaire
+			</h3><p class="isWhite">
+				Ici vous allez pouvoir vous renseigner sur les plantes medicinales les plus efficaces
+				</p>
+			</a>
+		</div>
+		<div class="isBordered perso-rectangle-1 d-flex isRow ">
+			<div class="isBordered perso-square-1 gradient-1 o-flow hovers"><img class="width-100   " src="images\image2.jpg"/>
+				<a href='index.php?action=recherche_resultat' class="overlay-2 isWhite">
+					<h3 class="center isWhite">
+						Recherche
+					</h3>
+					<p class="isWhite">
+					Ici vous allez rechercher par themes (Nom, Preparation, Effet, Espece )
+					</p>
+				</a>
+			</div>
+			<div class="isBordered perso-square-1 gradient-1 o-flow"><img class="width-100   hovers" src="images\image3.jpg"/>
+				<a href='index.php?action=montrer_quizz' class="overlay-2 isWhite">
+					<h3 class="center isWhite">
+						Quizz
+					</h3>
+					<p class="isWhite">
+						Le quizz permet de pouvoir tester votre capacité a reconnaitre les plantes a vue d'oeil, le tout est de s'inscrire juste avant.
+					</p>
+				</a>
+			</div>
+		</div>
+	</div>
+	<a href='index.php?action=montrer_liste&page=1' class="perso-carré-1 isBordered gradient-1 o-flow"><img class="width-100  parall hovers" src="images\image4.jpg"/> 
+		<div class="overlay-2 isWhite">
+			<h3 class="center isWhite">
+			Listes des Membres
+			</h3>
+			<p class="isWhite">
+				Ici vous retrouverez tout ceux qui comme vous , ont visité et joué au quizz
+			</p>
+		</div>
+	</a>
+</div>
 {% endblock %}

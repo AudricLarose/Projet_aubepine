@@ -1,33 +1,33 @@
 <?php
 namespace Coriolis\controller;
 
-class Ajax_Score_Controller
+class AjaxScoreController
 {
-    public function ajax_score($score)
+    public function ajaxScore($score)
     {
         $content_onglet_titre="Quizz";
         if (isset($_SESSION['admin'])) {
             if ($score!= " ") {
-                $getScore= new \Coriolis\model\Users_Manager();
+                $getScore= new \Coriolis\model\UsersManager();
                 $insertScore=$getScore->insertScore($score);
                 $getTheScore=$getScore->getScore($_SESSION['admin']);
                 echo $getTheScore;
             }
         }
     }
-    public function ajax_plante()
+    public function ajaxPlante()
     {
-        $getScore= new \Coriolis\model\SearchManager_Model();
-        $recuperePlante=$getScore->wordCloud_by('nom', 'plantes');
+        $getScore= new \Coriolis\model\SearchManagerModel();
+        $recuperePlante=$getScore->wordCloudBy('nom', 'plantes');
         foreach ($recuperePlante as $recuperePlantes) {
             echo ucfirst($recuperePlantes['nom']);
             echo "," ;
         }   
     }
-    public function ajax_getId($plante)
+    public function ajaxGetId($plante)
     {
-        $getId= new \Coriolis\model\SearchManager_Model();
-        $recupereId=$getId->GetPlanteId($plante);
+        $getId= new \Coriolis\model\SearchManagerModel();
+        $recupereId=$getId->getPlanteId($plante);
         echo $recupereId[0][0];
     }
     

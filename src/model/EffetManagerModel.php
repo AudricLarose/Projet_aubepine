@@ -1,7 +1,7 @@
 <?php
 namespace Coriolis\model;
 
-class EffetManager_Model extends Connexion_model
+class EffetManagerModel extends ConnexionModel
 {
     public function showEffect()
     {
@@ -15,7 +15,7 @@ class EffetManager_Model extends Connexion_model
                 $data[]=$x;
             }
             foreach ($data as $datas) {
-                    $data_hydrated= new \Coriolis\model\Entity_Effet_Model();
+                    $data_hydrated= new \Coriolis\model\EntityEffetModel();
                     $data_hydrated->hydratation($datas);
                     $datae[]=$data_hydrated;
             }

@@ -10,23 +10,23 @@ Recherche
 <table>
     <tr>
         <th class="center  isBordered isBrown">Nom</th>
-        <th class="center  isBordered isBgreen">Prepa</th>
-        <th class="center  isBordered isBrown3">Espece</th>
+        <th class="center  isBordered isBgreen">Préparation</th>
+        <th class="center  isBordered isBrown3">Espèce</th>
         <th class="center  isBordered isBrown2">Effet</th>
     </tr>
         {% for resultat in resultats %}
         {% if resultat.nom is not empty %}
        <tr >
         <td class="center  isBordered-side ">
-            {% filter title %}{{resultat.nom}}{% endfilter %}       </td>
+            {% filter title %}{{resultat.nom}}{% endfilter %}</td>
         <td class="center  d-flex justify-content-center align-content-center align-item-center  ">
-            {% filter title %}{{resultat.prepa}}{% endfilter %}  <br>
+            {% filter title %}{{resultat.prepa}}{% endfilter %}<br>
         </td>
         <td class="center  isBordered-side ">
            {% filter title %}{{resultat.espece}}{% endfilter %}  
         </td>
         <td class="center d-flex justify-content-center align-content-center align-item-center ">
-           {% filter title %}{{resultat.effet}}{% endfilter %}  <br>
+           {% filter title %}{{resultat.effet}}{% endfilter %}<br>
 
         </td>
     </tr>
@@ -38,47 +38,44 @@ Recherche
      {% endif %}
 
 <br><br>
-<div class="" id="wordcloud">
-    <article class=" " id="categorie_nom">
+<div  id="wordcloud">
+    <article  id="categorie_nom">
         <h3 class="center ">Nom</h3><br>
         <div class="d-flex isRow justify-content-center">
              <form method="POST" class="full-width d-flex justify-content-center" action ="index.php?action=resultat_recherche">
                 <select name="recherche_par_nom">
         {% for wordcloud_nom in wordcloud_noms %}
-                <option  value="{{wordcloud_nom[0]}}">{% filter title %}{{wordcloud_nom[0]}}{% endfilter %}</option>         
+                <option  value="{{wordcloud_nom[0]}}">{% filter title %}{{wordcloud_nom[0]}}{% endfilter %}</option><br>      
      {% endfor %}
           </select><br><br>
-          <input type="submit" name="saisie_recherche_par_nom"  value="valider"></form>
+          <input type="submit" name="saisie_recherche_par_nom"  value="valider">
         </div><br>
     </article>
     <article class=" " id="categorie_espece">
         <h3 class="center ">Espece</h3><br>
         <div class="d-flex isRow justify-content-center">
-             <form method="POST" class="full-width d-flex justify-content-center" action ="index.php?action=resultat_recherche">
                 <select name="recherche_par_espece">
         {% for wordcloud_espece in wordcloud_especes %}
                 <option  value="{{wordcloud_espece[0]}}">{% filter title %}{{wordcloud_espece[0]}}{% endfilter %}</option>         
      {% endfor %}
           </select><br><br>
-          <input type="submit" name="saisie_recherche_par_espece" value="valider"></form>
+          <input type="submit" name="saisie_recherche_par_espece" value="valider">
         </div><br>
     </article>
     <article class=" " id="categorie_prepa">
         <h3 class="center ">Preparation</h3><br>
         <div class="d-flex isRow justify-content-center">
-             <form method="POST" class="full-width d-flex justify-content-center" action ="index.php?action=resultat_recherche">
                 <select name="prepa">
         {% for wordcloud_prepa in wordcloud_prepas %}
                 <option value="{{wordcloud_prepa[0]}}">{% filter title %}{{wordcloud_prepa[0]}}{% endfilter %}</option>         
      {% endfor %}
           </select><br><br>
-          <input type="submit" name="saisie_recherche_par_prepa" value="valider"></form>
+          <input type="submit" name="saisie_recherche_par_prepa" value="valider">
         </div><br>
     </article>
     <article class=" " id="categorie_effet">
         <h3 class="center ">Effet</h3><br>
         <div class="d-flex isRow justify-content-center">
-             <form method="POST" class="full-width d-flex justify-content-center" action ="index.php?action=resultat_recherche">
                 <select name="effet">
         {% for wordcloud_effet in wordcloud_effets %}
                 <option value="{{wordcloud_effet[0]}}">{% filter title %}{{wordcloud_effet[0]}}{% endfilter %}</option>         
