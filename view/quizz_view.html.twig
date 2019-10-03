@@ -7,16 +7,16 @@ Quizz
   <div class="bigbloc   height-auto">
   <div class="bloc_avatar d-flex isRow ">
       <div class="bloc3 perso-avatar">
-        {% if Liste.img %}
+        {% if getPlayer[0].img %}
             <img class="avatar" src="./Upload/{{getPlayer[0].img}}"  alt="image upload utilisateur"/></div>
         {% else %}
-            <img class="avatar" src="./upload/defaut.jpg" alt="image upload par defaut"/></div>
+            <img class="avatar" src="./Upload/defaut.jpg" alt="image upload par defaut"/></div>
       {% endif %}
 <div class="info">
   {{content_invite_admin}}
   <div class="bloc_score">Votre Score :<span class="score">{{ score }}</span></div>
   <button class='js-click'>Modification</button><br>
-  <a href="index.php?action=deconnection">deconnexion</a><br>
+  <a href="index.php?action=deconnection">Deconnexion</a><br>
   <a href="index.php?action=montrer_liste">Voir les autres profils</a>
   </div>
 </div>

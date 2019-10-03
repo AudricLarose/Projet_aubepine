@@ -4,6 +4,9 @@ $loader = new Twig_Loader_Filesystem('view');
 $twig = new Twig_Environment($loader, array(
       'cache' => false
 ));
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
 session_start();
 $actions = new Coriolis\controller\InitController();
 $actions->init();
