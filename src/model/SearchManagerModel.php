@@ -99,7 +99,7 @@ class SearchManagerModel extends ConnexionModel
                     $data_hydrated->hydratation($datas);
                     $datae[]=[ "requete" => $mot_clef];
                     $datae[]=$data_hydrated;
-                    }
+                }
                 return $datae;
             } else {
                 echo "pas de resultat";

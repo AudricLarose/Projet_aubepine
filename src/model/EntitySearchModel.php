@@ -1,7 +1,7 @@
 <?php
 namespace Coriolis\model ;
 
-class EntitySearchModel 
+class EntitySearchModel
 {
     private $id;
     private $nom;
@@ -48,7 +48,7 @@ class EntitySearchModel
     {
          $this->effet=$effet;
     }
-    public function hydratation ($donnée)
+    public function hydratation($donnée)
     {
         $this->setId($donnée['id']);
         $this->setNom($donnée['nom']);

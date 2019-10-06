@@ -25,7 +25,7 @@ class EntityUserModel
     {
         return $this->img;
     }
-      public function getDate()
+    public function getDate()
     {
         return $this->date;
     }
@@ -56,6 +56,5 @@ class EntityUserModel
         $this->setScore($donnée['score']);
         $this->setImg($donnée['img']);
         $this->setDate($donnée['date']);
-
     }
 }

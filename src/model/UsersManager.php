@@ -122,7 +122,7 @@ class UsersManager extends ConnexionModel
             $req="SELECT * FROM users WHERE user=?;";
             $sql=$this->connected()->prepare($req);
             $sql->execute([$username]);
-            if ($sql->rowCount()) {          
+            if ($sql->rowCount()) {
                 while ($ssql=$sql->fetch()) {
                     $passwordcheck=password_verify($password, $ssql['password']);
                     if ($passwordcheck==true) {
@@ -133,7 +133,7 @@ class UsersManager extends ConnexionModel
                         header('location:index.php?action=montrer_quizz');
                     } else {
                         header('location:index.php?action=montrer_quizz&error=wrongpwd');
-                    }                    
+                    }
                 }
             } else {
                 header('location:index.php?action=montrer_quizz&error=wrongpwd');
@@ -145,10 +145,10 @@ class UsersManager extends ConnexionModel
         $req="SELECT score FROM users WHERE user='".$user."'";
         $resultat=$this->connected()->prepare($req);
         $resultat->execute();
-        if ($resultat->rowCount()) {            
+        if ($resultat->rowCount()) {
             while ($x=$resultat->fetch()) {
                     $data[]=$x;
-            }            
+            }
             return $data[0][0];
         } else {
             echo "pas de resultat";
