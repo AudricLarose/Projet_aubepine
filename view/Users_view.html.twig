@@ -7,13 +7,14 @@ Connexion
 {{content_admin}}</div>
 <br>
 <h2 class="center"> CONNEXION </h2>
+<p class="center">( Vous devez vous connecter avant de jouer )</p>
 <div class="d-flex justify-content-center align-content-around align-item-around mobile_adapt_column_n o-flow height-60">
 <section class="formulaire_admin">
     <h2>Ouvrir un compte</h2><br><br>
     <form class='formu1' action='index.php?action=montrer_quizz' method="POST" enctype="multipart/form-data"> 
-        <label for="nom">Inscrivez vous :</label>
+        <label for="nom_user">Inscrivez vous :</label>
         <div class="nom-retro isRed"></div>
-        <input type="text" name="nom" required="required" id="nom_user"  placeholder="Nom..." />
+        <input type="text" name="nom" id="nom_user" required="required"  placeholder="Nom..." />
         <div class="mail-retro isRed"></div>
         <input type="text" name="mail" id="mail_user" placeholder="E-mail..." />
         <div class="mdp-retro isRed"></div>
@@ -30,7 +31,7 @@ Connexion
     <form class='formu' action='index.php?action=montrer_quizz' method="POST"> 
         <label for="nom_connexion">Nom de l'utilisateur :</label>
         <br>
-        <input type="text" name="nom_connexion" required="required" placeholder="nom..." /><br>
+        <input type="text" id="nom_connexion" name="nom_connexion" required="required" placeholder="nom..." /><br>
         <input type="password" name="password_connexion" placeholder="Password..." required="required" />
         <br>
         <button type='submit' name='connexion'>se connecter</button>

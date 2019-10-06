@@ -310,7 +310,7 @@ box-shadow:12px 10px 7px 0px #9a9a9a ;
     width: 200px;
 }
 .width-30{
-    width: 300px;
+    width: 300px!important;
 }
 .width-40{
     width: 400px!important;

@@ -32,9 +32,6 @@ class UsersManager extends ConnexionModel
         if (empty($username) || empty($password) || empty($mail) || empty($password_repeat)) {
             header('location:index.php?action=montrer_quizz&error=champs_vide');
             exit();
-        } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-            header('location:index.php?action=montrer_quizz&error=wrongmailandnom');
-            exit();
         } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             header('location:index.php?action=montrer_quizz&error=wrongmailform');
             exit();

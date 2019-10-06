@@ -10,7 +10,6 @@
  	tableau_des_choix : ["#js-choix-1","#js-choix-2","#js-choix-3","#js-choix-4"],
 	hasard_sauvage : function (){
 		quizz.Bswan=Math.floor(Math.random() * 48);
-		console.log(quizz.choix[this.Bswan]);
         $.post('index.php?action=ajax_getId', {name: quizz.choix[this.Bswan] }, function(data,status){
 		$('#guess').empty().append("<img src=images/"+data+".jpg />");
          })
@@ -39,7 +38,6 @@
             quizz.score=quizz.score+100;
             $.post('index.php?action=ajax_score', {score: quizz.score }, function(data,status){
             $('.score').html(data);
-            console.log(data);
             });
             quizz.lancetoi();
             }
@@ -70,7 +68,6 @@
                  this.Bswan=Math.floor(Math.random() * 4);
                 [this.choix[i],this.choix[this.Bswan]]=[this.choix[this.Bswan],this.choix[i]];
         }
-        console.log(this.tableau_des_choix);
         for (var i = 0; i<=this.tableau_des_choix.length-1; i++) {
             quizz.event(this.tableau_des_choix[i],i);
         }

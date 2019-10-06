@@ -61,7 +61,7 @@ class SearchManagerModel extends ConnexionModel
     }
     public function rechercheParEffet()
     {
-        if (isset($_POST['effet'])) {
+        if (isset($_POST['saisie_recherche_par_effet'])) {
             $mot_clef=$_POST['effet'];
             $req="SELECT * FROM plantes WHERE effet LIKE '%".$mot_clef."%'";
             $resultat=$this->connected()->prepare($req);
@@ -85,7 +85,7 @@ class SearchManagerModel extends ConnexionModel
     }
     public function rechercheParPrepa()
     {
-        if (isset($_POST['prepa'])) {
+        if (isset($_POST['saisie_recherche_par_prepa'])) {
             $mot_clef=$_POST['prepa'];
             $req="SELECT * FROM plantes WHERE prepa LIKE '%".$mot_clef."%'";
             $resultat=$this->connected()->prepare($req);
@@ -108,7 +108,7 @@ class SearchManagerModel extends ConnexionModel
     }
     public function rechercheParNom()
     {
-        if (isset($_POST['recherche_par_nom'])) {
+        if (isset($_POST['saisie_recherche_par_nom'])) {
             $mot_clef=$_POST['recherche_par_nom'];
             $req="SELECT * FROM plantes WHERE nom LIKE '%".$mot_clef."%'";
             $resultat=$this->connected()->prepare($req);
@@ -131,7 +131,7 @@ class SearchManagerModel extends ConnexionModel
     }
     public function rechercheParEspece()
     {
-        if (isset($_POST['recherche_par_espece'])) {
+        if (isset($_POST['saisie_recherche_par_espece'])) {
             $mot_clef=$_POST['recherche_par_espece'];
             $req="SELECT * FROM plantes WHERE espece LIKE '%".$mot_clef."%'";
             $resultat=$this->connected()->prepare($req);

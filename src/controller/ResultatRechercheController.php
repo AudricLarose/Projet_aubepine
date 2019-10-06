@@ -1,9 +1,9 @@
 <?php
 namespace Coriolis\controller;
 
-class ResultatRechercheController
+class ResultatRechercheController                       // sert d'intermediaire
 {
-    public function resultatRecherche($twig)
+    public function resultatRecherche($twig)        
     {
         try {
             $resultats= null;
@@ -12,7 +12,7 @@ class ResultatRechercheController
             $resultat_recherche_par_prepa= $resultat_recherche->rechercheParPrepa();
             $resultat_recherche_par_espece= $resultat_recherche->rechercheParEspece();
             $resultat_recherche_par_effet= $resultat_recherche->rechercheParEffet();
-            $wordcloud_noms= $resultat_recherche->wordCloudBy('nom', 'plantes');
+            $wordcloud_noms= $resultat_recherche->wordCloudBy('nom', 'plantes');  
             $wordcloud_prepas= $resultat_recherche->wordCloudBy('prepa', 'prepa');
             $wordcloud_especes= $resultat_recherche->wordCloudBy('espece', 'plantes');
             $wordcloud_effets= $resultat_recherche->wordCloudBy('effet', 'effet');

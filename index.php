@@ -4,8 +4,6 @@ $loader = new Twig_Loader_Filesystem('view');
 $twig = new Twig_Environment($loader, array(
       'cache' => false
 ));
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
 
 session_start();
 $actions = new Coriolis\controller\InitController();
@@ -81,7 +79,7 @@ if (isset($_GET['action'])) {
             $action->ajaxGetId($name);
             break;
         case 'deconnection':
-            $action = new Coriolis\controller\deconnectionController();
+            $action = new Coriolis\controller\DeconnectionController();
             $action->deco();
             break;
         case 'montrer_liste':

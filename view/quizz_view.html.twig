@@ -8,9 +8,9 @@ Quizz
   <div class="bloc_avatar d-flex isRow ">
       <div class="bloc3 perso-avatar">
         {% if getPlayer[0].img %}
-            <img class="avatar" src="./Upload/{{getPlayer[0].img}}"  alt="image upload utilisateur"/></div>
+            <img class="avatar" src="./upload/{{getPlayer[0].img}}"  alt="image upload utilisateur"/></div>
         {% else %}
-            <img class="avatar" src="./Upload/defaut.jpg" alt="image upload par defaut"/></div>
+            <img class="avatar" src="./upload/defaut.jpg" alt="image upload par defaut"/></div>
       {% endif %}
 <div class="info">
   {{content_invite_admin}}
@@ -23,8 +23,8 @@ Quizz
 
 <div class="isRedBcg center isWhite">
 {{content_admin}}</div>
-  <div class="bigbloc   d-flex justify-content-center align-item-center align-content-center height-60">
-    <div class="bloc11   height-40 d-flex justify-content-center align-item-center align-content-center img_profile width-40" id="guess">
+  <div class="bigbloc   d-flex justify-content-center align-item-center align-content-center height-40">
+    <div class="bloc11   height-40 d-flex justify-content-center align-item-center align-content-center img_profile width-30" id="guess">
     </div>
   </div>
 
@@ -35,7 +35,7 @@ Quizz
   <h4 class="center  margin-bottom-30 gras"> Modifier votre nom </h3>
   <label for="new_name">Votre nom actuellement, c'est : {{name}}</label>
 
-  <input type="text" name="new_name"  placeholder="modifier votre nom"></input><br>
+  <input type="text" name="new_name"  id="new_name" placeholder="modifier votre nom"></input><br>
   <input type="submit" name="modifier_nom" class="margin-bottom-30 " value="modifier nom"></input>
     <h4 class="center margin-bottom-30 gras"> Modifier votre Avatar</h3>
 
