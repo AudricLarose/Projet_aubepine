@@ -1,7 +1,7 @@
 {
 	"name": "audric/coriolis",
 	"require": {
-		"twig/twig": "^2.11"
+		"twig/twig": "^3.11"
 	},
 	"autoload": {
 		"psr-4": {
